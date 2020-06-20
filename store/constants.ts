@@ -7,3 +7,5 @@ export const ADD = '_ADD';
 export const DELETE = '_DELETE';
 export const EDIT = '_EDIT';
 export const SET = '_SET';
+
+export const PRODUCTS = 'products/PRODUCTS';

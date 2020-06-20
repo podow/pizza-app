@@ -12,10 +12,7 @@ const Footer: React.FC<{}> = () => {
         <FooterContent>
           <Link href={{ pathname: '/' }}>
             <a className="footer-logo">
-              <img
-                src="/static/images/icons/footer-logo.svg"
-                alt="Footer logo"
-              />
+              <img src="/static/images/logo.png" alt="Footer logo" />
             </a>
           </Link>
 
