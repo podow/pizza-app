@@ -13,7 +13,7 @@ const MainHeader: React.FC<IMainHeaderProps> = props => {
       <div className="header-logo">
         <Link href={{ pathname: '/' }}>
           <a>
-            <img src="/static/images/logo.svg" alt="logo" />
+            <img src="/static/images/logo.png" alt="logo" />
           </a>
         </Link>
       </div>
