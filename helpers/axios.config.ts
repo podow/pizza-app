@@ -10,9 +10,9 @@ export const setHelpersStore = newStore => {
 const axiosConfig: AxiosInstance & AxiosRequestConfig = axios.create({
   baseURL: process.env.API_HOST,
   headers: {
-    Language: 'ru',
+    // Language: 'ru',
     accept: 'application/json',
-    authorization: `Bearer ${process.env.ACCESS_TOKEN}`
+    // authorization: `Bearer ${process.env.ACCESS_TOKEN}`
   }
 });
 
