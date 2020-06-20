@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { toggleModal } from 'store/common/common.actions';
-
 import {
   ModalWrapper,
   ModalContent,
@@ -31,7 +29,7 @@ const Modal: React.FC<IModalProps> = props => {
   function closeModal(e) {
     e.preventDefault();
     const { name } = modal;
-    dispatch(toggleModal({ name, open: false }));
+    // dispatch(toggleModal({ name, open: false }));
   }
 
   return (
