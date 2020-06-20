@@ -16,6 +16,7 @@
   "dependencies": {
     "@glidejs/glide": "^3.4.1",
     "@next/bundle-analyzer": "^9.1.7",
+    "@types/classnames": "^2.2.10",
     "axios": "^0.19.2",
     "cacheable-response": "^1.10.0",
     "classnames": "^2.2.6",
