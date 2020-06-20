@@ -24,7 +24,11 @@ const ProductsBlock = () => {
           'https://dodopizza-a.akamaihd.net/static/Img/ComboTemplates/a8a18447921341209856cfdd5b5ea2af_584x584.png'
       }
     }
-  ]; //useSelector(state => state.products.data);
+  ];
+
+  const productsR = useSelector(state => state.products.data);
+
+  console.log(productsR);
 
   return (
     <ProductsSection>
