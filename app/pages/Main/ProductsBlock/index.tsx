@@ -12,23 +12,21 @@ import { Container } from 'app/components/container';
 import { Button } from 'app/components/Buttons';
 
 const ProductsBlock = () => {
-  const products = [
-    {
-      id: 1,
-      name: 'test',
-      description: 'test',
-      price: 10,
-      discountPrice: null,
-      image: {
-        url:
-          'https://dodopizza-a.akamaihd.net/static/Img/ComboTemplates/a8a18447921341209856cfdd5b5ea2af_584x584.png'
-      }
-    }
-  ];
+  // const products = [
+  //   {
+  //     id: 1,
+  //     name: 'test',
+  //     description: 'test',
+  //     price: 10,
+  //     discountPrice: null,
+  //     image: {
+  //       url:
+  //         'https://dodopizza-a.akamaihd.net/static/Img/ComboTemplates/a8a18447921341209856cfdd5b5ea2af_584x584.png'
+  //     }
+  //   }
+  // ];
 
-  const productsR = useSelector(state => state.products.data);
-
-  console.log(productsR);
+  const products = useSelector(state => state.products.data);
 
   return (
     <ProductsSection>
