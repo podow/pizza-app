@@ -1,5 +1,4 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import cn from 'classnames';
 
 import {
@@ -12,9 +11,74 @@ import { Container } from 'app/components/container';
 import { Button } from 'app/components/Buttons';
 
 const ProductsBlock = () => {
-  const products = useSelector(state => state.products.data);
-
-  console.log(products);
+  const products = [
+    {
+      id: 1,
+      name: 'test',
+      description: 'test',
+      price: 10,
+      discountPrice: null,
+      image: {
+        url:
+          'https://dodopizza-a.akamaihd.net/static/Img/ComboTemplates/a8a18447921341209856cfdd5b5ea2af_584x584.png'
+      }
+    },
+    {
+      id: 2,
+      name: 'test',
+      description: 'test',
+      price: 10,
+      discountPrice: null,
+      image: {
+        url:
+          'https://dodopizza-a.akamaihd.net/static/Img/ComboTemplates/a8a18447921341209856cfdd5b5ea2af_584x584.png'
+      }
+    },
+    {
+      id: 3,
+      name: 'test',
+      description: 'test',
+      price: 10,
+      discountPrice: null,
+      image: {
+        url:
+          'https://dodopizza-a.akamaihd.net/static/Img/ComboTemplates/a8a18447921341209856cfdd5b5ea2af_584x584.png'
+      }
+    },
+    {
+      id: 4,
+      name: 'test',
+      description: 'test',
+      price: 10,
+      discountPrice: null,
+      image: {
+        url:
+          'https://dodopizza-a.akamaihd.net/static/Img/ComboTemplates/a8a18447921341209856cfdd5b5ea2af_584x584.png'
+      }
+    },
+    {
+      id: 5,
+      name: 'test',
+      description: 'test',
+      price: 10,
+      discountPrice: null,
+      image: {
+        url:
+          'https://dodopizza-a.akamaihd.net/static/Img/ComboTemplates/a8a18447921341209856cfdd5b5ea2af_584x584.png'
+      }
+    },
+    {
+      id: 6,
+      name: 'test',
+      description: 'test',
+      price: 10,
+      discountPrice: null,
+      image: {
+        url:
+          'https://dodopizza-a.akamaihd.net/static/Img/ComboTemplates/a8a18447921341209856cfdd5b5ea2af_584x584.png'
+      }
+    }
+  ];
 
   return (
     <ProductsSection>
