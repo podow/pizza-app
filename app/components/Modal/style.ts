@@ -30,6 +30,7 @@ export const ModalWrapper = styled.div<{ isOpen: boolean }>`
   transition: opacity 0.3s;
   opacity: 0;
   visibility: hidden;
+  z-index: 9999;
   ${props => props.isOpen && `${ModalWrapperOpen}`}
 `;
 

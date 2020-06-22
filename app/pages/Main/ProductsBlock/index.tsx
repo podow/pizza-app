@@ -1,4 +1,5 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import cn from 'classnames';
 
 import {
@@ -7,8 +8,11 @@ import {
   ProductsSectionItem
 } from './styles';
 
+import { toggleModal } from 'store/common/actions';
+
 import { Container } from 'app/components/container';
 import { Button } from 'app/components/Buttons';
+import Modal, { ModalPortal } from 'app/components/Modal';
 
 const ProductsBlock = () => {
   const products = [
@@ -79,6 +83,12 @@ const ProductsBlock = () => {
       }
     }
   ];
+  const dispatch = useDispatch();
+
+  const clickHandler = () => {
+    console.log(123);
+    dispatch(toggleModal({ name: 'test', open: true }));
+  };
 
   return (
     <ProductsSection>
@@ -93,7 +103,7 @@ const ProductsBlock = () => {
               discountPrice,
               image: { url }
             }) => (
-              <ProductsSectionItem key={id}>
+              <ProductsSectionItem key={id} onClick={clickHandler}>
                 <main>
                   <figure>
                     <img src={url} alt={name} title={name} />
@@ -123,6 +133,11 @@ const ProductsBlock = () => {
           )}
         </ProductsSectionItemsWrapper>
       </Container>
+      <ModalPortal>
+        <Modal nameProp="test">
+          <div>test</div>
+        </Modal>
+      </ModalPortal>
     </ProductsSection>
   );
 };
