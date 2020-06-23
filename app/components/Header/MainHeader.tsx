@@ -5,6 +5,8 @@ import { HeaderToggle, MainHeaderWrapper } from './style';
 
 import { IMainHeaderProps } from 'interfaces/components/header';
 
+import Basket from '../Basket';
+
 const MainHeader: React.FC<IMainHeaderProps> = props => {
   const { toggleMenu, isMenuOpened } = props;
 
@@ -26,6 +28,7 @@ const MainHeader: React.FC<IMainHeaderProps> = props => {
           <i />
         </a>
       </HeaderToggle>
+      <Basket />
     </MainHeaderWrapper>
   );
 };
