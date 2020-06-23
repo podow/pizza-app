@@ -36,7 +36,7 @@ const ProductModal: React.FC<IProductModal> = ({ name, activeProduct }) => {
       <Modal nameProp={name} onClose={() => setActiveIngredients([])}>
         <ProductModalContent>
           <div className="img">
-            <img src={activeProduct.image.url} alt={activeProduct.name} />
+            <img src={activeProduct.image} alt={activeProduct.name} />
           </div>
           <div className="description">
             <div className="text">
@@ -51,7 +51,7 @@ const ProductModal: React.FC<IProductModal> = ({ name, activeProduct }) => {
               </p>
             </div>
             <div className="additional">
-              {activeProduct.ingredients.map((ingredient: any) => (
+              {activeProduct.ingredients?.map((ingredient: any) => (
                 <div
                   className={cn('additional_item', {
                     additional_item__active:

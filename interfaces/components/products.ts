@@ -4,9 +4,7 @@ export interface IProduct {
   description: string;
   price: number | string;
   discountPrice: number | string;
-  image: {
-    url: string;
-  };
+  image: string;
   ingredients: IIngredient[];
 }
 
@@ -14,7 +12,5 @@ export interface IIngredient {
   id: number;
   name: string;
   price: string | number;
-  image: {
-    url: string;
-  };
+  image: string;
 }
