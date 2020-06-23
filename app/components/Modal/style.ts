@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { device } from '../../breakpoints';
 
 const ModalWrapperOpen = css`
   opacity: 1;
@@ -15,7 +16,7 @@ export const ModalWrapper = styled.div<{ isOpen: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   background-color: rgba(0, 0, 0, 0.6);
   position: fixed;
   top: 0;
@@ -30,24 +31,30 @@ export const ModalWrapper = styled.div<{ isOpen: boolean }>`
   transition: opacity 0.3s;
   opacity: 0;
   visibility: hidden;
+  z-index: 9999;
   ${props => props.isOpen && `${ModalWrapperOpen}`}
 `;
 
 export const ModalContent = styled.div<{ isOpen: boolean }>`
   background-color: #fff;
-  border-radius: 8px;
-  position: relative;
+  position: absolute;
   padding: 20px 25px;
-  max-width: 90%;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
   backface-visibility: hidden;
   transition: all 0.3s;
   opacity: 0;
-  transform: scale(0.9) translate3d(0, 50px, 0);
-  margin-top: 50px;
-  margin-bottom: 50px;
-  @media (min-width: 767px) {
+  width: 100%;
+
+  @media ${device.tablet} {
+    position: relative;
+    border-radius: 8px;
     padding: 40px 60px;
-    margin: 8% 0px;
+    max-width: 90%;
+    width: auto;
+    transform: scale(0.9) translate3d(0, 50px, 0);
   }
 
   ${props => props.isOpen && `${ModalContentOpen}`}

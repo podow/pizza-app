@@ -11,6 +11,7 @@ import {
 import { IModalProps } from 'interfaces/components/modal';
 
 import ModalPortal from './ModalPortal';
+import { toggleModal } from 'store/common/actions';
 
 const Modal: React.FC<IModalProps> = props => {
   const [isClient, setIsClient] = useState<boolean>(false);
@@ -18,7 +19,7 @@ const Modal: React.FC<IModalProps> = props => {
 
   const modal = useSelector(state => state.common.modal);
 
-  const { nameProp, children } = props;
+  const { nameProp, children, onClose } = props;
 
   useEffect(() => {
     if (window) {
@@ -29,7 +30,8 @@ const Modal: React.FC<IModalProps> = props => {
   function closeModal(e) {
     e.preventDefault();
     const { name } = modal;
-    // dispatch(toggleModal({ name, open: false }));
+    dispatch(toggleModal({ name, open: false }));
+    onClose && onClose();
   }
 
   return (
