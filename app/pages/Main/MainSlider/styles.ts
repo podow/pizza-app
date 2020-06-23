@@ -14,9 +14,9 @@ export const TopSlide = styled.figure<{ bgImage: string }>`
   cursor: pointer;
 
   @media (max-width: 425px) {
-    margin: 20px 15px;
+    margin: 0 15px;
     border-radius: 8px;
-    background-position: 50% 50%;
+    background-position: center;
   }
 `;
 

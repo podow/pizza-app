@@ -7,7 +7,7 @@ export const WrapperStyle = styled.div`
 
 export const Main = styled.main<{ backMenuOpened: boolean; color?: string }>`
   ${props => props.color && `background-color: ${props.color};`}
-  padding-top: ${props => (props.backMenuOpened ? '190px' : '189px')};
+  padding-top: ${props => (props.backMenuOpened ? '190px' : '143px')};
   @media (max-width: 425px) {
     padding-top: ${props => (props.backMenuOpened ? '120px' : '87px')};
   }
