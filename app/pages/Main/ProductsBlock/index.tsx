@@ -20,8 +20,9 @@ const ProductsBlock = () => {
   const products = [
     {
       id: 1,
-      name: 'test',
-      description: 'test',
+      name: 'Чизбургер-пицца',
+      description:
+        'Соус бургер, мясной соус болоньезе, красный лук, моцарелла, солёные огурцы, томаты',
       price: 10,
       discountPrice: null,
       image: {

@@ -73,7 +73,7 @@ const ProductModal: React.FC<IProductModal> = ({ name, activeProduct }) => {
                 </div>
               ))}
             </div>
-            <Button isFullWidth>
+            <Button className="add-to-card" isFullWidth>
               Add to card for{' '}
               {activeProduct.discountPrice || activeProduct.price}$
             </Button>

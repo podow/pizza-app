@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { device } from 'app/breakpoints';
 
 export const ProductsSection = styled.section`
   padding: 50px 0;
@@ -6,8 +7,15 @@ export const ProductsSection = styled.section`
 
 export const ProductsSectionItemsWrapper = styled.div`
   display: grid;
-  grid-template: auto / repeat(4, 1fr);
   grid-gap: 30px;
+
+  @media ${device.tablet} {
+    grid-template: auto / repeat(2, 1fr);
+  }
+
+  @media ${device.middle} {
+    grid-template: auto / repeat(4, 1fr);
+  }
 `;
 
 export const ProductsSectionItem = styled.article`
@@ -57,7 +65,10 @@ export const ProductsSectionItem = styled.article`
 `;
 
 export const ProductModalContent = styled.div`
-  display: flex;
+  @media ${device.tablet} {
+    display: flex;
+    max-width: 700px;
+  }
 
   .img {
     flex: 2;
@@ -68,10 +79,34 @@ export const ProductModalContent = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
+    @media ${device.tablet} {
+      padding-left: 28px;
+    }
+
+    .text {
+      p {
+        margin-top: 8px;
+      }
+    }
+
+    .add-to-card {
+      margin-top: 34px;
+
+      @media ${device.tablet} {
+        margin-top: unset;
+      }
+    }
   }
 
   .additional {
     display: flex;
+    justify-content: space-evenly;
+
+    @media ${device.tablet} {
+      margin-top: 56px;
+      justify-content: unset;
+    }
 
     &_item {
       cursor: pointer;
@@ -80,7 +115,7 @@ export const ProductModalContent = styled.div`
       width: 87px;
       box-shadow: rgba(6, 5, 50, 0.1) 0px 10px 20px;
       text-align: left;
-      margin: 55px 0px 0px 14px;
+      margin-right: 14px;
       padding: 8px 8px 16px;
       background: rgb(255, 255, 255);
       border-radius: 16px;
