@@ -3,6 +3,8 @@ import { device } from 'app/breakpoints';
 import { animatedArrows } from 'app/globalStyle';
 
 export const SliderWrapper = styled.div`
+  height: 100%;
+
   .glide__arrows {
     position: absolute;
     top: -60px;
@@ -40,6 +42,22 @@ export const SliderWrapper = styled.div`
 `;
 
 export const GlideTrack = styled.div`
+  height: 100%;
+
+  .glide__track {
+    height: 100%;
+
+    .glide__slides {
+      height: 100%;
+
+      .glide__slide {
+        border-radius: 20px;
+        overflow: hidden;
+        height: 100%;
+      }
+    }
+  }
+
   p {
     width: 60%;
   }
