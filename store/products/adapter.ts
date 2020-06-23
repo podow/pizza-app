@@ -1,7 +1,9 @@
 export const productAdapter = product => ({
   ...product,
   price: product.price,
-  discountPrice: product.discrount ? product.price - product.discrount : null
+  discountPrice: product.discountPrice
+    ? product.price - product.discountPrice
+    : null
 });
 
 export const productsAdapter = products =>
