@@ -9,6 +9,7 @@ export interface IProps {
   bottomArrows?: boolean;
   mainPeek?: number;
   peek?: number;
+  gap?: number;
   trackAddStyles?: object;
   sliderType?: string;
   disable?: boolean;

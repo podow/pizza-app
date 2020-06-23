@@ -1,7 +1,15 @@
 import React, { Component, Fragment } from 'react';
 import Glide from '@glidejs/glide';
-import { isMobile } from 'react-device-detect';
-import { GlideTrack, SliderWrapper, DisabledSliderList } from './style';
+
+import {
+  GlideArrows,
+  GlideArrow,
+  GlideTrack,
+  GlideSlides,
+  GlideSlide,
+  SliderWrapper,
+  DisabledSliderList
+} from './style';
 
 import { getUniqueStr } from 'helpers';
 
@@ -27,6 +35,7 @@ class CommonSlider extends Component<IProps, IState> {
   initSlider = () => {
     const {
       children,
+      gap,
       peek,
       perView,
       mainPeek,
@@ -38,14 +47,9 @@ class CommonSlider extends Component<IProps, IState> {
       this.setState(
         {
           slides: children.map((el, i) => (
-            <li
-              className="glide__slide"
-              key={i}
-              data-slide={i}
-              style={{ width: 365, marginRight: 10 }}
-            >
+            <GlideSlide key={i} data-slide={i}>
               {el}
-            </li>
+            </GlideSlide>
           ))
         },
         () => {
@@ -55,9 +59,10 @@ class CommonSlider extends Component<IProps, IState> {
             animationDuration: 1000,
             type: sliderType || 'slider',
             animationTimingFunc: 'ease',
-            startAt: isMobile ? 0 : 1,
-            focusAt: isMobile ? '0' : '1',
+            startAt: 0,
+            focusAt: '0',
             perView: perView || 2,
+            gap: gap || 30,
             breakpoints: {
               550: {
                 perView: 1,
@@ -90,61 +95,32 @@ class CommonSlider extends Component<IProps, IState> {
       <Fragment>
         {!disable ? (
           <SliderWrapper
-            style={{
-              position: 'relative',
-              marginRight: fillContent ? '-25px' : 0,
-              marginLeft: fillContent ? '-25px' : 0
-            }}
-            className="disc_slider"
             id={this.id}
+            className="disc_slider"
+            fillContent={fillContent}
           >
             {!withoutArrows && (
-              <div className="glide__arrows" data-glide-el="controls">
-                <a
-                  style={{
-                    display: 'block',
-                    marginRight: '20px',
-                    cursor: 'pointer'
-                  }}
-                  className="glide__arrow glide__arrow--left"
-                  data-glide-dir="<"
-                >
+              <GlideArrows data-glide-el="controls">
+                <GlideArrow className="left" data-glide-dir="<">
                   <img
                     src="/static/images/icons/slider-left-arrow.svg"
                     alt=""
                   />
-                </a>
-                <a
-                  style={{ display: 'block', cursor: 'pointer' }}
-                  className="glide__arrow glide__arrow--right"
-                  data-glide-dir=">"
-                >
+                </GlideArrow>
+                <GlideArrow className="right" data-glide-dir=">">
                   <img
                     src="/static/images/icons/slider-right-arrow.svg"
                     alt=""
                   />
-                </a>
-              </div>
+                </GlideArrow>
+              </GlideArrows>
             )}
-            <GlideTrack>
-              <div
-                style={{
-                  overflow: showHidden ? 'visible' : 'hidden',
-                  ...trackAddStyles
-                }}
-                className="glide__track"
-                data-glide-el="track"
-              >
-                <ul
-                  style={{
-                    display: 'flex',
-                    listStyle: 'none'
-                  }}
-                  className="glide__slides"
-                >
-                  {slides}
-                </ul>
-              </div>
+            <GlideTrack
+              showHidden={showHidden}
+              style={trackAddStyles}
+              data-glide-el="track"
+            >
+              <GlideSlides>{slides}</GlideSlides>
             </GlideTrack>
 
             {bottomArrows && (
