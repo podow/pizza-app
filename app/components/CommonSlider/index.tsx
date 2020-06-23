@@ -3,6 +3,8 @@ import Glide from '@glidejs/glide';
 import { isMobile } from 'react-device-detect';
 import { GlideTrack, SliderWrapper, DisabledSliderList } from './style';
 
+import { getUniqueStr } from 'helpers';
+
 import { IProps, IState } from 'interfaces/components/sliders';
 import { Container } from '../container';
 
@@ -19,13 +21,8 @@ class CommonSlider extends Component<IProps, IState> {
 
   componentDidMount() {
     this.initSlider();
-    this.id = this.uniqueId();
+    this.id = `id_${getUniqueStr()}`;
   }
-
-  uniqueId = () =>
-    `id_${(new Date().getTime() / Math.random())
-      .toString(16)
-      .replace('.', '')}`;
 
   initSlider = () => {
     const {
