@@ -19,7 +19,7 @@ const Modal: React.FC<IModalProps> = props => {
 
   const modal = useSelector(state => state.common.modal);
 
-  const { nameProp, children } = props;
+  const { nameProp, children, onClose } = props;
 
   useEffect(() => {
     if (window) {
@@ -31,6 +31,7 @@ const Modal: React.FC<IModalProps> = props => {
     e.preventDefault();
     const { name } = modal;
     dispatch(toggleModal({ name, open: false }));
+    onClose && onClose();
   }
 
   return (

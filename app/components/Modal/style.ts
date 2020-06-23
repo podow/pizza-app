@@ -15,7 +15,7 @@ export const ModalWrapper = styled.div<{ isOpen: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   background-color: rgba(0, 0, 0, 0.6);
   position: fixed;
   top: 0;
@@ -44,11 +44,8 @@ export const ModalContent = styled.div<{ isOpen: boolean }>`
   transition: all 0.3s;
   opacity: 0;
   transform: scale(0.9) translate3d(0, 50px, 0);
-  margin-top: 50px;
-  margin-bottom: 50px;
   @media (min-width: 767px) {
     padding: 40px 60px;
-    margin: 8% 0px;
   }
 
   ${props => props.isOpen && `${ModalContentOpen}`}
