@@ -14,7 +14,7 @@ export const ProductsSectionItemsWrapper = styled.div`
   }
 
   @media ${device.middle} {
-    grid-template: auto / repeat(4, 1fr);
+    grid-template: auto / repeat(3, 1fr);
   }
 `;
 
