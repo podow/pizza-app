@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import cn from 'classnames';
 
@@ -10,9 +10,11 @@ import {
 
 import { toggleModal } from 'store/common/actions';
 
+import { IProduct } from 'interfaces/components/products';
+
 import { Container } from 'app/components/container';
 import { Button } from 'app/components/Buttons';
-import Modal, { ModalPortal } from 'app/components/Modal';
+import ProductModal from './ProductModal';
 
 const ProductsBlock = () => {
   const products = [
@@ -25,7 +27,36 @@ const ProductsBlock = () => {
       image: {
         url:
           'https://dodopizza-a.akamaihd.net/static/Img/ComboTemplates/a8a18447921341209856cfdd5b5ea2af_584x584.png'
-      }
+      },
+      ingredients: [
+        {
+          id: 1,
+          name: 'Mashrooms',
+          image: {
+            url:
+              'https://dodopizza-a.akamaihd.net/static/Img/Ingredients/000D3A262427A95111E9DBA8CF1B6A99'
+          },
+          price: '1.5'
+        },
+        {
+          id: 2,
+          name: 'Cheese',
+          image: {
+            url:
+              'https://dodopizza-a.akamaihd.net/static/Img/Ingredients/000D3A262427A95111EA083CF38D509D'
+          },
+          price: '2'
+        },
+        {
+          id: 3,
+          name: 'Jalapenos',
+          image: {
+            url:
+              'https://dodopizza-a.akamaihd.net/static/Img/Ingredients/000D3A262427A95111E9DB9FFD8DC324'
+          },
+          price: '1.2'
+        }
+      ]
     },
     {
       id: 2,
@@ -36,7 +67,36 @@ const ProductsBlock = () => {
       image: {
         url:
           'https://dodopizza-a.akamaihd.net/static/Img/ComboTemplates/a8a18447921341209856cfdd5b5ea2af_584x584.png'
-      }
+      },
+      ingredients: [
+        {
+          id: 1,
+          name: 'Mashrooms',
+          image: {
+            url:
+              'https://dodopizza-a.akamaihd.net/static/Img/Ingredients/000D3A262427A95111E9DBA8CF1B6A99'
+          },
+          price: '1.5'
+        },
+        {
+          id: 2,
+          name: 'Cheese',
+          image: {
+            url:
+              'https://dodopizza-a.akamaihd.net/static/Img/Ingredients/000D3A262427A95111EA083CF38D509D'
+          },
+          price: '2'
+        },
+        {
+          id: 3,
+          name: 'Jalapenos',
+          image: {
+            url:
+              'https://dodopizza-a.akamaihd.net/static/Img/Ingredients/000D3A262427A95111E9DB9FFD8DC324'
+          },
+          price: '1.2'
+        }
+      ]
     },
     {
       id: 3,
@@ -47,7 +107,36 @@ const ProductsBlock = () => {
       image: {
         url:
           'https://dodopizza-a.akamaihd.net/static/Img/ComboTemplates/a8a18447921341209856cfdd5b5ea2af_584x584.png'
-      }
+      },
+      ingredients: [
+        {
+          id: 1,
+          name: 'Mashrooms',
+          image: {
+            url:
+              'https://dodopizza-a.akamaihd.net/static/Img/Ingredients/000D3A262427A95111E9DBA8CF1B6A99'
+          },
+          price: '1.5'
+        },
+        {
+          id: 2,
+          name: 'Cheese',
+          image: {
+            url:
+              'https://dodopizza-a.akamaihd.net/static/Img/Ingredients/000D3A262427A95111EA083CF38D509D'
+          },
+          price: '2'
+        },
+        {
+          id: 3,
+          name: 'Jalapenos',
+          image: {
+            url:
+              'https://dodopizza-a.akamaihd.net/static/Img/Ingredients/000D3A262427A95111E9DB9FFD8DC324'
+          },
+          price: '1.2'
+        }
+      ]
     },
     {
       id: 4,
@@ -58,7 +147,36 @@ const ProductsBlock = () => {
       image: {
         url:
           'https://dodopizza-a.akamaihd.net/static/Img/ComboTemplates/a8a18447921341209856cfdd5b5ea2af_584x584.png'
-      }
+      },
+      ingredients: [
+        {
+          id: 1,
+          name: 'Mashrooms',
+          image: {
+            url:
+              'https://dodopizza-a.akamaihd.net/static/Img/Ingredients/000D3A262427A95111E9DBA8CF1B6A99'
+          },
+          price: '1.5'
+        },
+        {
+          id: 2,
+          name: 'Cheese',
+          image: {
+            url:
+              'https://dodopizza-a.akamaihd.net/static/Img/Ingredients/000D3A262427A95111EA083CF38D509D'
+          },
+          price: '2'
+        },
+        {
+          id: 3,
+          name: 'Jalapenos',
+          image: {
+            url:
+              'https://dodopizza-a.akamaihd.net/static/Img/Ingredients/000D3A262427A95111E9DB9FFD8DC324'
+          },
+          price: '1.2'
+        }
+      ]
     },
     {
       id: 5,
@@ -69,7 +187,36 @@ const ProductsBlock = () => {
       image: {
         url:
           'https://dodopizza-a.akamaihd.net/static/Img/ComboTemplates/a8a18447921341209856cfdd5b5ea2af_584x584.png'
-      }
+      },
+      ingredients: [
+        {
+          id: 1,
+          name: 'Mashrooms',
+          image: {
+            url:
+              'https://dodopizza-a.akamaihd.net/static/Img/Ingredients/000D3A262427A95111E9DBA8CF1B6A99'
+          },
+          price: '1.5'
+        },
+        {
+          id: 2,
+          name: 'Cheese',
+          image: {
+            url:
+              'https://dodopizza-a.akamaihd.net/static/Img/Ingredients/000D3A262427A95111EA083CF38D509D'
+          },
+          price: '2'
+        },
+        {
+          id: 3,
+          name: 'Jalapenos',
+          image: {
+            url:
+              'https://dodopizza-a.akamaihd.net/static/Img/Ingredients/000D3A262427A95111E9DB9FFD8DC324'
+          },
+          price: '1.2'
+        }
+      ]
     },
     {
       id: 6,
@@ -80,14 +227,45 @@ const ProductsBlock = () => {
       image: {
         url:
           'https://dodopizza-a.akamaihd.net/static/Img/ComboTemplates/a8a18447921341209856cfdd5b5ea2af_584x584.png'
-      }
+      },
+      ingredients: [
+        {
+          id: 1,
+          name: 'Mashrooms',
+          image: {
+            url:
+              'https://dodopizza-a.akamaihd.net/static/Img/Ingredients/000D3A262427A95111E9DBA8CF1B6A99'
+          },
+          price: '1.5'
+        },
+        {
+          id: 2,
+          name: 'Cheese',
+          image: {
+            url:
+              'https://dodopizza-a.akamaihd.net/static/Img/Ingredients/000D3A262427A95111EA083CF38D509D'
+          },
+          price: '2'
+        },
+        {
+          id: 3,
+          name: 'Jalapenos',
+          image: {
+            url:
+              'https://dodopizza-a.akamaihd.net/static/Img/Ingredients/000D3A262427A95111E9DB9FFD8DC324'
+          },
+          price: '1.2'
+        }
+      ]
     }
   ];
+  const [activeProduct, setActiveProduct] = useState({} as IProduct);
   const dispatch = useDispatch();
 
-  const clickHandler = () => {
-    console.log(123);
-    dispatch(toggleModal({ name: 'test', open: true }));
+  const clickHandler = id => {
+    const product: any = products.find(product => product.id === id);
+    setActiveProduct(product);
+    dispatch(toggleModal({ name: 'productModal', open: true }));
   };
 
   return (
@@ -103,7 +281,7 @@ const ProductsBlock = () => {
               discountPrice,
               image: { url }
             }) => (
-              <ProductsSectionItem key={id} onClick={clickHandler}>
+              <ProductsSectionItem key={id} onClick={() => clickHandler(id)}>
                 <main>
                   <figure>
                     <img src={url} alt={name} title={name} />
@@ -133,11 +311,10 @@ const ProductsBlock = () => {
           )}
         </ProductsSectionItemsWrapper>
       </Container>
-      <ModalPortal>
-        <Modal nameProp="test">
-          <div>test</div>
-        </Modal>
-      </ModalPortal>
+
+      {Object.keys(activeProduct).length !== 0 && (
+        <ProductModal name="productModal" activeProduct={activeProduct} />
+      )}
     </ProductsSection>
   );
 };
