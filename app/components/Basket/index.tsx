@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Link from 'next/link';
 
 import {
@@ -9,10 +9,19 @@ import {
   EmptyBasketWrapper
 } from './styles';
 
+import { IProduct } from 'interfaces/components/products';
+
+import { removeFromBasketAction } from 'store/basket/actions';
+
 import BasketProductItem from './BasketProductItem';
 
 const Basket = () => {
   const products = useSelector(state => state.basket.data);
+  const dispatch = useDispatch();
+
+  const removeClickHandler = (item: IProduct) => {
+    dispatch(removeFromBasketAction(item));
+  };
 
   return (
     <BasketWrapper>
@@ -26,13 +35,14 @@ const Basket = () => {
         {products.length !== 0 ? (
           <>
             <BasketProductList>
-              {products.map(({ id, image, name, price, discountPrice }) => (
+              {products.map((item: IProduct) => (
                 <BasketProductItem
-                  image={image.url}
-                  name={name}
-                  price={discountPrice || price}
+                  key={item.id}
+                  name={item.name}
+                  image={item.image.url}
+                  price={item.discountPrice || item.price}
                   count={1}
-                  key={id}
+                  onRemove={() => removeClickHandler(item)}
                 />
               ))}
             </BasketProductList>
