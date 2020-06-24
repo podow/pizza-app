@@ -13,3 +13,5 @@ export const INCREMENT_API = 'common/INCREMENT_API';
 export const DECREMENT_API = 'common/DECREMENT_API';
 
 export const PRODUCTS = 'products/PRODUCTS';
+
+export const BASKET = 'products/BASKET';
