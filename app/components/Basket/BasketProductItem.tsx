@@ -6,7 +6,7 @@ interface IProps {
   image?: string;
   name: string;
   price: string | number;
-  count: number;
+  count?: number;
 }
 
 const BasketProductItem: React.FC<IProps> = ({ image, name, price, count }) => (

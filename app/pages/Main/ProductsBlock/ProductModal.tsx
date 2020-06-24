@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import cn from 'classnames';
 
 import { ProductModalContent } from './styles';
 
 import { IIngredient, IProduct } from 'interfaces/components/products';
+
+import { toggleModal } from 'store/common/actions';
+import { addToBasketAction } from 'store/basket/actions';
 
 import Modal, { ModalPortal } from 'app/components/Modal';
 import { Button } from 'app/components/Buttons';
@@ -15,6 +19,7 @@ interface IProductModal {
 
 const ProductModal: React.FC<IProductModal> = ({ name, activeProduct }) => {
   const [activeIngredients, setActiveIngredients] = useState([]);
+  const dispatch = useDispatch();
 
   const ingredientsClickHandler = (ingredient: IIngredient) => {
     const ingredients = [...activeIngredients];
@@ -29,6 +34,11 @@ const ProductModal: React.FC<IProductModal> = ({ name, activeProduct }) => {
     }
 
     setActiveIngredients(ingredients);
+  };
+
+  const addToCardClickHandler = (item: IProduct) => {
+    dispatch(addToBasketAction(item));
+    dispatch(toggleModal({ name: 'productModal', open: false }));
   };
 
   return (
@@ -73,7 +83,11 @@ const ProductModal: React.FC<IProductModal> = ({ name, activeProduct }) => {
                 </div>
               ))}
             </div>
-            <Button className="add-to-card" isFullWidth>
+            <Button
+              className="add-to-card"
+              onClick={() => addToCardClickHandler(activeProduct)}
+              isFullWidth
+            >
               Add to card for{' '}
               {activeProduct.discountPrice || activeProduct.price}$
             </Button>

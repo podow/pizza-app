@@ -113,3 +113,17 @@ export const BasketProductItemWrapper = styled.li`
     }
   }
 `;
+
+export const EmptyBasketWrapper = styled.div`
+  padding: 16px 0;
+  text-align: center;
+
+  img {
+    max-width: 150px;
+  }
+
+  p {
+    font-size: 12px;
+    margin-top: 8px;
+  }
+`;
