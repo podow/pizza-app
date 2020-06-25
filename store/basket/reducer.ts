@@ -4,7 +4,8 @@ import { BASKET, ADD, DELETE } from '../constants';
 
 const initialState = {
   data: [],
-  total: 0
+  totalCost: 0,
+  totalItems: 0
 };
 
 export default handleActions(
@@ -27,13 +28,17 @@ export default handleActions(
       return {
         ...state,
         data,
-        total: state.total + Number(payload.discountPrice || payload.price)
+        totalCost:
+          state.totalCost + Number(payload.discountPrice || payload.price),
+        totalItems: state.totalItems + 1
       };
     },
     [BASKET + DELETE]: (state, { payload }) => ({
       ...state,
       data: state.data.filter(item => item.id !== payload.id),
-      total: state.total - Number(payload.discountPrice || payload.price)
+      totalCost:
+        state.totalCost - Number(payload.discountPrice || payload.price),
+      totalItems: state.totalItems - payload.count
     })
   },
   initialState

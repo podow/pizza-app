@@ -17,9 +17,10 @@ import BasketProductItem from './BasketProductItem';
 
 const Basket = () => {
   const dispatch = useDispatch();
-  const { products, total } = useSelector(state => ({
+  const { products, totalCost, totalItems } = useSelector(state => ({
     products: state.basket.data,
-    total: state.basket.total
+    totalCost: state.basket.totalCost,
+    totalItems: state.basket.totalItems
   }));
 
   const removeClickHandler = (item: IProduct) => {
@@ -31,7 +32,9 @@ const Basket = () => {
       <Link href={{ pathname: '/basket' }}>
         <BasketLink>
           <span>Basket</span>
-          <img src="/static/images/icons/icon-basket.svg" alt="Basket" />
+          {totalItems || (
+            <img src="/static/images/icons/icon-basket.svg" alt="Basket" />
+          )}
         </BasketLink>
       </Link>
       <div className="dropdown">
@@ -49,7 +52,7 @@ const Basket = () => {
                 />
               ))}
             </BasketProductList>
-            <div className="total">Total: {total}$</div>
+            <div className="total">Total: {totalCost}$</div>
           </>
         ) : (
           <EmptyBasketWrapper>
