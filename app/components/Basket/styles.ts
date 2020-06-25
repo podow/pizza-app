@@ -51,14 +51,14 @@ export const BasketWrapper = styled.div`
     border-radius: 8px;
     box-shadow: 0 0 5px #dedede;
 
-    // display: none;
+    display: none;
     overflow-y: auto;
     padding: 0 16px;
     width: 250px;
     max-height: 300px;
 
     position: absolute;
-    top: 50px;
+    top: 40px;
     right: 0;
     z-index: 999;
 
@@ -79,6 +79,10 @@ export const BasketProductItemWrapper = styled.li`
   &:not(:first-child) {
     border-top: 1px solid;
     padding-top: 6px;
+  }
+
+  &:not(:last-child) {
+    padding-bottom: 6px;
   }
 
   .image {
