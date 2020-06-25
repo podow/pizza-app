@@ -38,13 +38,15 @@ export function triangle(
     right?: string;
     bottom?: string;
     left?: string;
-  }
+  },
+  color?: string
 ) {
   return `
-    content: '';
-    background-color: #fff;
-    transform: translateX(-50%) rotate(45deg);
-    ${block(size)}
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 ${size} ${size} ${size};
+    border-color: transparent transparent ${color || '#fff'} transparent;
     ${abs(position)}
   `;
 }
