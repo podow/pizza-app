@@ -42,9 +42,9 @@ const Basket = () => {
                 <BasketProductItem
                   key={item.id}
                   name={item.name}
-                  image={item.image.url}
+                  image={item.image}
                   price={item.discountPrice || item.price}
-                  count={1}
+                  count={item.count}
                   onRemove={() => removeClickHandler(item)}
                 />
               ))}

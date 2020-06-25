@@ -2,9 +2,10 @@ export interface IProduct {
   id: number;
   name: string;
   description: string;
-  price: number | string;
-  discountPrice: number | string;
+  price: number;
+  discountPrice: number;
   image: string;
+  count?: number;
   ingredients: IIngredient[];
 }
 
