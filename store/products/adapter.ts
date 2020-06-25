@@ -6,6 +6,7 @@ export const productAdapter = (product: IProduct) => ({
   discountPrice: product.discountPrice
     ? product.price - product.discountPrice
     : null,
+  image: process.env.API_HOST + product.image,
   count: 1
 });
 
