@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const Container = styled.div<{ isTight?: boolean }>`
   margin-left: auto;
   margin-right: auto;
   padding-right: 25px;
@@ -11,20 +11,20 @@ export const Container = styled.div`
     max-width: 800px;
   }
   @media (min-width: 992px) {
-    max-width: 1020px;
+    max-width: ${props => (props.isTight ? '800px' : '1020px')};
   }
   @media (min-width: 1200px) {
-    max-width: 1020px;
+    max-width: ${props => (props.isTight ? '800px' : '1020px')};
     padding-left: 0;
     padding-right: 0;
   }
   @media (min-width: 1400px) {
-    max-width: 1070px;
+    max-width: ${props => (props.isTight ? '800px' : '1070px')};
     padding-left: 0;
     padding-right: 0;
   }
   @media (min-width: 1600px) {
-    max-width: 1170px;
+    max-width: ${props => (props.isTight ? '800px' : '1170px')};
     padding-left: 0;
     padding-right: 0;
   }
