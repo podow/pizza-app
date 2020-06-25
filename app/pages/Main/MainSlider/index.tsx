@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import { useSelector } from 'react-redux';
 
 import {
   ImageSliderWrapper,
@@ -10,22 +11,7 @@ import {
 import CommonSlider from 'app/components/CommonSlider';
 
 const MainSlider = () => {
-  const slides = [
-    {
-      id: 1,
-      photo:
-        'https://cdn.dodostatic.net/static/Img/Banners/g_1591703510_348d606bc795452c80df0d0ea2860970.jpeg',
-      title: 'test',
-      description: 'test'
-    },
-    {
-      id: 2,
-      photo:
-        'https://cdn.dodostatic.net/static/Img/Banners/g_1591703510_348d606bc795452c80df0d0ea2860970.jpeg',
-      title: 'test 2',
-      description: 'test 2'
-    }
-  ];
+  const slides = useSelector(state => state.slider.data);
 
   return (
     <ImageSliderWrapper>
@@ -33,7 +19,7 @@ const MainSlider = () => {
         {slides &&
           slides.map(el => (
             <Fragment key={el.id}>
-              <TopSlide bgImage={el.photo}>
+              <TopSlide bgImage={el.image}>
                 {el.title && el.description && (
                   <ImageSliderTitleWrapper>
                     <div>
