@@ -19,6 +19,9 @@ const MainHeader: React.FC<IMainHeaderProps> = props => {
           </a>
         </Link>
       </div>
+
+      <Basket />
+
       <HeaderToggle
         onClick={toggleMenu}
         isMenuOpened={isMenuOpened}
@@ -28,7 +31,6 @@ const MainHeader: React.FC<IMainHeaderProps> = props => {
           <i />
         </a>
       </HeaderToggle>
-      <Basket />
     </MainHeaderWrapper>
   );
 };

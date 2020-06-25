@@ -2,9 +2,14 @@ import React from 'react';
 import { NextPage } from 'next';
 
 import Wrapper from '../layout';
+import BasketPageContainer from 'app/pages/Basket';
 
 const BasketPage: NextPage = () => {
-  return <Wrapper>Basket</Wrapper>;
+  return (
+    <Wrapper>
+      <BasketPageContainer />
+    </Wrapper>
+  );
 };
 
 export default BasketPage;

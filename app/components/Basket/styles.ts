@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { darkHover, mainColor, mainTransitionTime } from 'app/variables';
+import { device } from 'app/breakpoints';
 
 export const BasketLink = styled.a`
   display: flex;
@@ -40,9 +41,11 @@ export const BasketLink = styled.a`
 export const BasketWrapper = styled.div`
   position: relative;
 
-  &:hover {
-    .dropdown {
-      display: block;
+  @media ${device.tablet} {
+    &:hover {
+      .dropdown {
+        display: block;
+      }
     }
   }
 
