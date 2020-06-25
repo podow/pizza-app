@@ -32,6 +32,7 @@ export const ProductsSectionItem = styled.article`
   main {
     figure img {
       transition: transform 0.5s;
+      width: 100%;
     }
 
     h2 {

@@ -61,7 +61,7 @@ const ProductModal: React.FC<IProductModal> = ({ name, activeProduct }) => {
               </p>
             </div>
             <div className="additional">
-              {activeProduct.ingredients?.map((ingredient: any) => (
+              {activeProduct.ingredients?.map((ingredient: IIngredient) => (
                 <div
                   className={cn('additional_item', {
                     additional_item__active:
@@ -72,7 +72,7 @@ const ProductModal: React.FC<IProductModal> = ({ name, activeProduct }) => {
                   onClick={() => ingredientsClickHandler(ingredient)}
                 >
                   <img
-                    src={ingredient.image.url}
+                    src={ingredient.image}
                     alt={ingredient.name}
                     title={ingredient.name}
                   />
