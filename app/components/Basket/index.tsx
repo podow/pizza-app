@@ -16,8 +16,11 @@ import { removeFromBasketAction } from 'store/basket/actions';
 import BasketProductItem from './BasketProductItem';
 
 const Basket = () => {
-  const products = useSelector(state => state.basket.data);
   const dispatch = useDispatch();
+  const { products, total } = useSelector(state => ({
+    products: state.basket.data,
+    total: state.basket.total
+  }));
 
   const removeClickHandler = (item: IProduct) => {
     dispatch(removeFromBasketAction(item));
@@ -46,7 +49,7 @@ const Basket = () => {
                 />
               ))}
             </BasketProductList>
-            <div className="total">Итого: 20$</div>
+            <div className="total">Total: {total}$</div>
           </>
         ) : (
           <EmptyBasketWrapper>
