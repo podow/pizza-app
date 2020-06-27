@@ -4,6 +4,7 @@ export const FAIL = '_FAIL';
 export const RESET = '_RESET';
 export const HANDLE = '_HANDLE';
 export const ADD = '_ADD';
+export const ONE = '_ONE';
 export const DELETE = '_DELETE';
 export const EDIT = '_EDIT';
 export const SET = '_SET';
@@ -17,3 +18,5 @@ export const SLIDER = 'slider/SLIDER';
 export const PRODUCTS = 'products/PRODUCTS';
 
 export const BASKET = 'products/BASKET';
+
+export const ORDER = 'order/ORDER';

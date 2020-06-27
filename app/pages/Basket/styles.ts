@@ -151,3 +151,30 @@ export const BasketProduct = styled.li`
     }
   }
 `;
+
+export const ModalForm = styled.form`
+  max-width: 600px;
+
+  @media ${device.tablet} {
+    width: 600px;
+  }
+
+  footer {
+    text-align: right;
+  }
+
+  & > *:not(:last-child) {
+    margin-bottom: 20px;
+  }
+`;
+
+export const SuccessModalContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  p {
+    margin: 20px 0;
+  }
+`;

@@ -25,12 +25,15 @@ export interface IFormSelectProps extends Config {
 }
 
 export interface IFormFieldProps {
-  field: object;
+  field: {
+    name: string;
+  };
   props: object;
   filterProp?: boolean | undefined;
   isFullHeight?: boolean;
   isNotRounded?: boolean;
   extraPaddingUnique?: boolean;
+  name: string;
 }
 
 export interface IInputPhoneProps {

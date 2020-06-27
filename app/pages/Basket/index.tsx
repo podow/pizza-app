@@ -6,20 +6,44 @@ import { BasketPageWrapper, BasketList, BasketProduct } from './styles';
 
 import { IProduct } from 'interfaces/components/products';
 
+import { toggleModal } from 'store/common/actions';
 import { removeFromBasketAction } from 'store/basket/actions';
+import { createOrder } from 'store/order/actions';
 
 import { Container } from 'app/components/container';
 import { Button } from 'app/components/Buttons';
+import OrderModal from './OrderModal';
+import OrderResultModal from './OrderResultModal';
 
 const BasketPageContainer = () => {
   const dispatch = useDispatch();
-  const { products, totalCost } = useSelector(state => ({
+  const { products, totalCost, create } = useSelector(state => ({
     products: state.basket.data,
-    totalCost: state.basket.totalCost
+    totalCost: state.basket.totalCost,
+    create: state.order.create
   }));
 
   const removeClickHandler = (product: IProduct) => {
     dispatch(removeFromBasketAction(product));
+  };
+
+  const handleSubmitOrder = () => {
+    dispatch(toggleModal({ name: 'orderModal', open: true }));
+  };
+
+  const handleSubmitOrderModal = values => {
+    dispatch(
+      createOrder({
+        user_data: values,
+        order_data: {
+          products,
+          totalCost
+        }
+      })
+    );
+
+    dispatch(toggleModal({ name: 'orderModal', open: false }));
+    dispatch(toggleModal({ name: 'orderResultModal', open: true }));
   };
 
   return (
@@ -73,14 +97,25 @@ const BasketPageContainer = () => {
         </BasketList>
         <footer>
           <Link href={{ pathname: '/' }}>
-            <Button isWhite>Back to menu</Button>
+            <a>
+              <Button isWhite>Back to menu</Button>
+            </a>
           </Link>
           <div className="total">
             Total: <span className="money">$ {totalCost}</span>
           </div>
-          <Button>Take order</Button>
+          <Button disabled={products.length <= 0} onClick={handleSubmitOrder}>
+            Take order
+          </Button>
         </footer>
       </Container>
+
+      <OrderModal
+        name="orderModal"
+        onSubmit={values => handleSubmitOrderModal(values)}
+      />
+
+      <OrderResultModal name="orderResultModal" state={create} />
     </BasketPageWrapper>
   );
 };

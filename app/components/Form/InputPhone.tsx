@@ -18,9 +18,8 @@ const InputPhone: React.FC<IInputPhoneProps> = ({ validate, isFullWidth }) => {
           <MaskedInput
             {...field}
             type="tel"
-            placeholder="___-___-__-__"
+            placeholder="__-___-___-___"
             mask={[
-              /[1-9]/,
               /\d/,
               /\d/,
               '-',
@@ -30,7 +29,9 @@ const InputPhone: React.FC<IInputPhoneProps> = ({ validate, isFullWidth }) => {
               '-',
               /\d/,
               /\d/,
+              /\d/,
               '-',
+              /\d/,
               /\d/,
               /\d/
             ]}
