@@ -1,6 +1,6 @@
 import { handleActions } from 'redux-actions';
 
-import { BASKET, ADD, DELETE } from '../constants';
+import { BASKET, ADD, DELETE, FETCH, RESET } from '../constants';
 
 const initialState = {
   data: [],
@@ -10,6 +10,12 @@ const initialState = {
 
 export default handleActions(
   {
+    [BASKET + FETCH]: state => ({
+      ...state,
+      data: JSON.parse(localStorage.getItem('basket') || '[]'),
+      totalCost: localStorage.getItem('basketTotalCost') || 0,
+      totalItems: localStorage.getItem('basketTotalItems') || 0
+    }),
     [BASKET + ADD]: (state, { payload }) => {
       const data = [...state.data];
       let productAlreadyInBasket = false;
@@ -25,21 +31,52 @@ export default handleActions(
         data.push(payload);
       }
 
+      const totalCost = String(
+        Number(state.totalCost) + Number(payload.discountPrice || payload.price)
+      );
+      const totalItems = String(Number(state.totalItems) + 1);
+
+      localStorage.setItem('basket', JSON.stringify(data));
+      localStorage.setItem('basketTotalCost', totalCost);
+      localStorage.setItem('basketTotalItems', totalItems);
+
       return {
         ...state,
         data,
-        totalCost:
-          state.totalCost + Number(payload.discountPrice || payload.price),
-        totalItems: state.totalItems + 1
+        totalCost,
+        totalItems
       };
     },
-    [BASKET + DELETE]: (state, { payload }) => ({
-      ...state,
-      data: state.data.filter(item => item.id !== payload.id),
-      totalCost:
-        state.totalCost - Number(payload.discountPrice || payload.price),
-      totalItems: state.totalItems - payload.count
-    })
+    [BASKET + DELETE]: (state, { payload }) => {
+      const data = state.data.filter(item => item.id !== payload.id);
+      const totalCost = String(
+        Number(state.totalCost) - Number(payload.discountPrice || payload.price)
+      );
+      const totalItems = String(
+        Number(state.totalItems) + Number(payload.count)
+      );
+
+      localStorage.setItem('basket', JSON.stringify(data));
+      localStorage.setItem('basketTotalCost', totalCost);
+      localStorage.setItem('basketTotalItems', totalItems);
+
+      return {
+        ...state,
+        data,
+        totalCost,
+        totalItems
+      };
+    },
+    [BASKET + RESET]: state => {
+      localStorage.removeItem('basket');
+      localStorage.removeItem('basketTotalCost');
+      localStorage.removeItem('basketTotalItems');
+
+      return {
+        ...state,
+        ...initialState
+      };
+    }
   },
   initialState
 );

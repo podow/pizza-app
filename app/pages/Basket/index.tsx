@@ -7,7 +7,10 @@ import { BasketPageWrapper, BasketList, BasketProduct } from './styles';
 import { IProduct } from 'interfaces/components/products';
 
 import { toggleModal } from 'store/common/actions';
-import { removeFromBasketAction } from 'store/basket/actions';
+import {
+  removeFromBasketAction,
+  resetBasketAction
+} from 'store/basket/actions';
 import { createOrder } from 'store/order/actions';
 
 import { Container } from 'app/components/container';
@@ -44,6 +47,7 @@ const BasketPageContainer = () => {
 
     dispatch(toggleModal({ name: 'orderModal', open: false }));
     dispatch(toggleModal({ name: 'orderResultModal', open: true }));
+    dispatch(resetBasketAction());
   };
 
   return (
