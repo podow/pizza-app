@@ -19,7 +19,11 @@ const OrderModal = ({ name, onSubmit }) => {
   const validation = Yup.object().shape({
     name: Yup.string().required(),
     address: Yup.string().required(),
-    phone: Yup.string().required(),
+    phone: Yup.string()
+      .required()
+      .test('phone', 'field value is incorrect', value =>
+        /\d{2}-\d{3}-\d{3}-\d{3}/.test(value)
+      ),
     comment: Yup.string()
   });
 

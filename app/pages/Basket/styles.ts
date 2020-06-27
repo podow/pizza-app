@@ -167,3 +167,14 @@ export const ModalForm = styled.form`
     margin-bottom: 20px;
   }
 `;
+
+export const SuccessModalContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  p {
+    margin: 20px 0;
+  }
+`;

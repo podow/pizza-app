@@ -8,16 +8,19 @@ import { IProduct } from 'interfaces/components/products';
 
 import { toggleModal } from 'store/common/actions';
 import { removeFromBasketAction } from 'store/basket/actions';
+import { createOrder } from 'store/order/actions';
 
 import { Container } from 'app/components/container';
 import { Button } from 'app/components/Buttons';
 import OrderModal from './OrderModal';
+import OrderResultModal from './OrderResultModal';
 
 const BasketPageContainer = () => {
   const dispatch = useDispatch();
-  const { products, totalCost } = useSelector(state => ({
+  const { products, totalCost, create } = useSelector(state => ({
     products: state.basket.data,
-    totalCost: state.basket.totalCost
+    totalCost: state.basket.totalCost,
+    create: state.order.create
   }));
 
   const removeClickHandler = (product: IProduct) => {
@@ -29,13 +32,18 @@ const BasketPageContainer = () => {
   };
 
   const handleSubmitOrderModal = values => {
-    console.log({
-      user_data: values,
-      order_data: {
-        products,
-        totalCost
-      }
-    });
+    dispatch(
+      createOrder({
+        user_data: values,
+        order_data: {
+          products,
+          totalCost
+        }
+      })
+    );
+
+    dispatch(toggleModal({ name: 'orderModal', open: false }));
+    dispatch(toggleModal({ name: 'orderResultModal', open: true }));
   };
 
   return (
@@ -106,6 +114,8 @@ const BasketPageContainer = () => {
         name="orderModal"
         onSubmit={values => handleSubmitOrderModal(values)}
       />
+
+      <OrderResultModal name="orderResultModal" state={create} />
     </BasketPageWrapper>
   );
 };
