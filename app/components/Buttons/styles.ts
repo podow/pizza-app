@@ -5,6 +5,7 @@ interface IProps {
   isWhite?: boolean;
   isSubscribeBlock?: boolean;
   size?: 'sm' | 'md' | 'lg';
+  disabled?: boolean;
 }
 
 const fromWhiteToBrown = css`
@@ -46,6 +47,12 @@ export const ButtonStyle = styled.button<IProps>`
   transition: all 0.4s ease-out;
   font-family: 'Rubik-Medium', sans-serif;
   padding: 0 7px;
+  ${props =>
+    props.disabled &&
+    `cursor: default;
+    background-color: #af632b;
+    opacity: 0.7;
+    background-image: none;`}
   &:hover {
     background-position: left bottom;
   }

@@ -14,7 +14,8 @@ export const Button: React.FC<IButtonProps> = props => {
     onClick,
     style,
     loading,
-    size
+    size,
+    disabled
   } = props;
 
   return (
@@ -26,6 +27,7 @@ export const Button: React.FC<IButtonProps> = props => {
       onClick={onClick}
       style={style}
       size={size}
+      disabled={disabled}
       {...props}
     >
       <ButtonLabel isSubscribeBlock={isSubscribeBlock} isWhite={isWhite}>

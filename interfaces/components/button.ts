@@ -15,4 +15,5 @@ export interface IButtonProps {
   target?: string;
   rel?: string;
   className?: string;
+  disabled?: boolean;
 }
