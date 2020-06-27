@@ -109,6 +109,21 @@ export const InputField = styled.input<IProps>`
   }
 `;
 
+export const TextAreaStyled = styled.textarea<IProps>`
+  padding: ${props => (props.filterProp ? '19px 50px 20px 35px' : '20px 10px')};
+  border: 1px solid #dadada;
+  border-radius: ${props => (props.isNotRounded ? '0px' : '6px')};
+  ${props => props.extraPaddingUnique && `${ExtraPaddingUnique}`};
+  outline: none;
+  text-align: ${props => (props.filterProp ? 'center' : 'left')};
+  height: ${props => (props.isFullHeight ? '100%' : '45px')};
+  width: 100%;
+  resize: none;
+  @media (max-width: 768px) {
+    height: ${props => (props.isFullHeight ? '100%' : '45px')};
+  }
+`;
+
 export const PriceFromFieldBlock = styled.div<IProps>`
   position: relative;
   &:before {
@@ -173,25 +188,31 @@ export const PriceToFieldBlock = styled.div<IProps>`
   }
 `;
 
-export const InputPhoneWrapper = styled.div<{ isFullWidth?: boolean }>`
+export const InputPhoneWrapper = styled.div<{
+  isFullWidth?: boolean;
+  isFullHeight?: boolean;
+}>`
   position: relative;
+
   input[type='tel'] {
-    padding: 20px 10px 20px 50px;
+    padding: 20px 10px 20px 35px;
     border-radius: 6px;
     outline: none;
     position: relative;
     border: 1px solid #dadada;
     width: ${props => props.isFullWidth && '100%'};
+    height: ${props => (props.isFullHeight ? '100%' : '45px')};
     @media (max-width: 425px) {
       width: 100%;
     }
   }
+
   &::before {
-    content: '+7';
+    content: '+';
     font-size: 18px;
     color: #be6c2f;
     position: absolute;
-    top: 20px;
+    top: 12px;
     right: auto;
     bottom: auto;
     left: 17px;
