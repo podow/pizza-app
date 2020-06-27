@@ -24,7 +24,7 @@ function* fetchProductsFlow() {
   }
 }
 
-function* fetchOneProductFlow(payload) {
+function* fetchOneProductFlow({ payload }) {
   try {
     const response = yield call(getById, payload);
     if (response) yield put(fetchOrderDone(response));
@@ -34,18 +34,18 @@ function* fetchOneProductFlow(payload) {
   }
 }
 
-function* createProductFlow(payload) {
+function* createOrderFlow({ payload }) {
   try {
     const response = yield call(create, payload);
     if (response) yield put(createOrderDone(response));
   } catch (err) {
     console.error(err);
-    yield put(createOrderFail());
+    yield put(createOrderFail(err));
   }
 }
 
 export default function* projectFlatRootSaga() {
   yield takeLatest(fetchOrders, fetchProductsFlow);
   yield takeLatest(fetchOrder, fetchOneProductFlow);
-  yield takeLatest(createOrder, createProductFlow);
+  yield takeLatest(createOrder, createOrderFlow);
 }

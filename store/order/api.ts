@@ -7,4 +7,4 @@ export const getById = id =>
   axios.get(`/order/view/${id}`).then(({ data }) => data.data);
 
 export const create = data =>
-  axios.post('/order', data).then(({ data }) => data.data);
+  axios.post('/order/create', data).then(({ data }) => data.data);
