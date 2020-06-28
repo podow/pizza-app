@@ -160,6 +160,7 @@ export const MainHeaderWrapper = styled.div`
 
 export const HeaderToggle = styled.div<{ isMenuOpened: boolean }>`
   cursor: pointer;
+  display: none: // TODO: remove
   a {
     width: 25px;
     height: 19px;
@@ -413,4 +414,36 @@ export const ModalSubtitle = styled.p`
   padding-bottom: '20px';
   text-align: 'center';
   font-size: '22px';
+`;
+
+export const HeaderControls = styled.div`
+  display: flex;
+  align-items: center;
+
+  & > a,
+  & > button {
+    margin-right: 12px;
+    width: 30px;
+    height: 30px;
+    background-image: url('/static/images/icons/profile.png');
+    background-size: cover;
+    text-indent: -9999px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+  }
+`;
+
+export const AuthModalWrapper = styled.div`
+  min-width: 380px;
+
+  form {
+    & > *:not(:last-child) {
+      margin-bottom: 20px;
+    }
+
+    footer {
+      text-align: right;
+    }
+  }
 `;

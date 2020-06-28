@@ -1,14 +1,22 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import Link from 'next/link';
 
-import { HeaderToggle, MainHeaderWrapper } from './style';
+import { HeaderToggle, MainHeaderWrapper, HeaderControls } from './style';
 
 import { IMainHeaderProps } from 'interfaces/components/header';
+import { toggleModal } from 'store/common/actions';
 
 import Basket from '../Basket';
+import AuthModal from './AuthModal';
 
 const MainHeader: React.FC<IMainHeaderProps> = props => {
   const { toggleMenu, isMenuOpened } = props;
+  const dispatch = useDispatch();
+
+  const cabinetClickHandler = () => {
+    dispatch(toggleModal({ name: 'authModal', open: true }));
+  };
 
   return (
     <MainHeaderWrapper>
@@ -20,29 +28,22 @@ const MainHeader: React.FC<IMainHeaderProps> = props => {
         </Link>
       </div>
 
-      <div style={{ display: 'flex', alignItems: 'center' }}>
-        <Link href={{ pathname: '/history' }}>
-          <a style={{ marginRight: 12 }}>
-            <img
-              src="/static/images/icons/profile.png"
-              alt=""
-              style={{ width: 30 }}
-            />
-          </a>
-        </Link>
-
+      <HeaderControls>
+        <button onClick={cabinetClickHandler}>Cabinet</button>
         <Basket />
-      </div>
+      </HeaderControls>
 
-      {/*<HeaderToggle*/}
-      {/*  onClick={toggleMenu}*/}
-      {/*  isMenuOpened={isMenuOpened}*/}
-      {/*  className="header-toggle"*/}
-      {/*>*/}
-      {/*  <a>*/}
-      {/*    <i />*/}
-      {/*  </a>*/}
-      {/*</HeaderToggle>*/}
+      <HeaderToggle
+        onClick={toggleMenu}
+        isMenuOpened={isMenuOpened}
+        className="header-toggle"
+      >
+        <a>
+          <i />
+        </a>
+      </HeaderToggle>
+
+      <AuthModal />
     </MainHeaderWrapper>
   );
 };

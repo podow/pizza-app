@@ -20,3 +20,5 @@ export const PRODUCTS = 'products/PRODUCTS';
 export const BASKET = 'products/BASKET';
 
 export const ORDER = 'order/ORDER';
+
+export const AUTH = 'auth/AUTH';
