@@ -60,30 +60,30 @@ const ProductModal: React.FC<IProductModal> = ({ name, activeProduct }) => {
                   : null}
               </p>
             </div>
-            {/*<div className="additional">*/}
-            {/*  {activeProduct.ingredients?.map((ingredient: IIngredient) => (*/}
-            {/*    <div*/}
-            {/*      className={cn('additional_item', {*/}
-            {/*        additional_item__active:*/}
-            {/*          // @ts-ignore*/}
-            {/*          activeIngredients.indexOf(ingredient) !== -1*/}
-            {/*      })}*/}
-            {/*      key={ingredient.id}*/}
-            {/*      onClick={() => ingredientsClickHandler(ingredient)}*/}
-            {/*    >*/}
-            {/*      <img*/}
-            {/*        src={ingredient.image}*/}
-            {/*        alt={ingredient.name}*/}
-            {/*        title={ingredient.name}*/}
-            {/*      />*/}
-            {/*      <div className="additional_item_name">{ingredient.name}</div>*/}
-            {/*      <div className="additional_item_price">*/}
-            {/*        $ {ingredient.price}*/}
-            {/*        <button className="add_button">+</button>*/}
-            {/*      </div>*/}
-            {/*    </div>*/}
-            {/*  ))}*/}
-            {/*</div>*/}
+            <div className="additional">
+              {activeProduct.ingredients?.map((ingredient: IIngredient) => (
+                <div
+                  className={cn('additional_item', {
+                    additional_item__active:
+                      // @ts-ignore
+                      activeIngredients.indexOf(ingredient) !== -1
+                  })}
+                  key={ingredient.id}
+                  onClick={() => ingredientsClickHandler(ingredient)}
+                >
+                  <img
+                    src={ingredient.image}
+                    alt={ingredient.name}
+                    title={ingredient.name}
+                  />
+                  <div className="additional_item_name">{ingredient.name}</div>
+                  <div className="additional_item_price">
+                    $ {ingredient.price}
+                    <button className="add_button">+</button>
+                  </div>
+                </div>
+              ))}
+            </div>
             <Button
               className="add-to-card"
               onClick={() => addToCardClickHandler(activeProduct)}
