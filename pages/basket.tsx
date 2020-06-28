@@ -6,7 +6,7 @@ import BasketPageContainer from 'app/pages/Basket';
 
 const BasketPage: NextPage = () => {
   return (
-    <Wrapper>
+    <Wrapper title="Basket">
       <BasketPageContainer />
     </Wrapper>
   );
