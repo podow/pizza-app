@@ -9,7 +9,7 @@ export const setHelpersStore = newStore => {
 };
 
 const axiosConfig: AxiosInstance & AxiosRequestConfig = axios.create({
-  baseURL: process.env.API_HOST,
+  baseURL: 'https://innoscripta-pizza-back-podow.herokuapp.com',
   headers: {
     accept: 'application/json'
   }
