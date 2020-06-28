@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import Router from 'next/router';
 
 import {
   HistoryPageWrapper,
@@ -6,9 +8,21 @@ import {
   HistoryTable
 } from './styles';
 
+import { toggleModal } from 'store/common/actions';
+
 import { Container } from 'app/components/container';
 
 const HistoryContainer = () => {
+  const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      Router.replace('/');
+      dispatch(toggleModal({ name: 'authModal', open: true }));
+    }
+  }, [isAuthenticated]);
+
   const history = [
     {
       id: 38,
@@ -18,7 +32,7 @@ const HistoryContainer = () => {
     }
   ];
 
-  return (
+  return isAuthenticated ? (
     <HistoryPageWrapper>
       <Container>
         <h2>History</h2>
@@ -57,7 +71,7 @@ const HistoryContainer = () => {
         </HistoryTableWrapper>
       </Container>
     </HistoryPageWrapper>
-  );
+  ) : null;
 };
 
 export default HistoryContainer;
