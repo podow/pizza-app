@@ -78,7 +78,7 @@ const ProductModal: React.FC<IProductModal> = ({ name, activeProduct }) => {
                   />
                   <div className="additional_item_name">{ingredient.name}</div>
                   <div className="additional_item_price">
-                    $ {ingredient.price}
+                    free
                     <button className="add_button">+</button>
                   </div>
                 </div>
