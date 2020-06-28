@@ -47,13 +47,29 @@ export default handleActions(
         totalItems
       };
     },
-    [BASKET + DELETE]: (state, { payload }) => {
-      const data = state.data.filter(item => item.id !== payload.id);
+    [BASKET + DELETE]: (state, { payload: { product, countToRemove } }) => {
+      let data = [...state.data];
+      const productIndex: number = data.indexOf(product);
+      if (productIndex !== -1 && countToRemove !== product.count) {
+        const newProduct = {
+          ...product,
+          count: product.count - countToRemove
+        };
+        data = data.map(item => {
+          if (item.id === newProduct.id) {
+            return newProduct;
+          }
+          return item;
+        });
+      } else if (productIndex !== -1 && countToRemove === product.count) {
+        data = data.filter(item => item.id !== product.id);
+      }
       const totalCost = String(
-        Number(state.totalCost) - Number(payload.discountPrice || payload.price)
+        Number(state.totalCost) -
+          Number(product.discountPrice || product.price) * countToRemove
       );
       const totalItems = String(
-        Number(state.totalItems) + Number(payload.count)
+        Number(state.totalItems) - Number(countToRemove)
       );
 
       localStorage.setItem('basket', JSON.stringify(data));

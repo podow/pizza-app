@@ -2,12 +2,13 @@ import React from 'react';
 import Link from 'next/link';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { BasketPageWrapper, BasketList, BasketProduct } from './styles';
+import { BasketPageWrapper, BasketList } from './styles';
 
 import { IProduct } from 'interfaces/components/products';
 
 import { toggleModal } from 'store/common/actions';
 import {
+  addToBasketAction,
   removeFromBasketAction,
   resetBasketAction
 } from 'store/basket/actions';
@@ -29,7 +30,7 @@ const BasketPageContainer = () => {
   }));
 
   const removeClickHandler = (product: IProduct) => {
-    dispatch(removeFromBasketAction(product));
+    dispatch(removeFromBasketAction({ product, countToRemove: product.count }));
   };
 
   const handleSubmitOrder = () => {
@@ -52,6 +53,14 @@ const BasketPageContainer = () => {
     dispatch(resetBasketAction());
   };
 
+  const changeCountHandler = (product: IProduct, type: string) => {
+    if (type === '+') {
+      dispatch(addToBasketAction(product));
+    } else {
+      dispatch(removeFromBasketAction({ product, countToRemove: 1 }));
+    }
+  };
+
   return (
     <BasketPageWrapper>
       <Container isTight>
@@ -65,6 +74,7 @@ const BasketPageContainer = () => {
                   key={product.id}
                   product={product}
                   onRemove={() => removeClickHandler(product)}
+                  onCountChange={type => changeCountHandler(product, type)}
                 />
               ))}
               <DeliveryItem />
@@ -85,7 +95,7 @@ const BasketPageContainer = () => {
           <div className="total">
             Total:{' '}
             <span className="money">
-              $ {totalCost !== 0 ? Number(totalCost) + 5 : totalCost}
+              $ {totalCost > 0 ? Number(totalCost) + 5 : totalCost}
             </span>
           </div>
           <Button disabled={products.length <= 0} onClick={handleSubmitOrder}>

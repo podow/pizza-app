@@ -7,11 +7,13 @@ import { IProduct } from 'interfaces/components/products';
 interface IProps {
   product: IProduct;
   onRemove: () => void;
+  onCountChange: (type) => void;
 }
 
 const BasketItem: React.FC<IProps> = ({
   product: { image, name, count, discountPrice, price },
-  onRemove
+  onRemove,
+  onCountChange
 }) => (
   <BasketProduct>
     <div className="half">
@@ -24,9 +26,9 @@ const BasketItem: React.FC<IProps> = ({
       </div>
       <div className="controls">
         <div className="count">
-          <button>-</button>
+          <button onClick={() => onCountChange('-')}>-</button>
           {count}
-          <button>+</button>
+          <button onClick={() => onCountChange('+')}>+</button>
         </div>
       </div>
     </div>
