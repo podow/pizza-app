@@ -42,9 +42,9 @@ const Modal: React.FC<IModalProps> = props => {
     }
   };
 
-  useEffect(() => {
-    document.addEventListener('mousedown', handleClickOutside);
-  }, []);
+  // useEffect(() => {
+  //   document.addEventListener('mousedown', handleClickOutside);
+  // }, []);
 
   return (
     <>
