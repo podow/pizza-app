@@ -20,7 +20,19 @@ const MainHeader: React.FC<IMainHeaderProps> = props => {
         </Link>
       </div>
 
-      <Basket />
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        <Link href={{ pathname: '/history' }}>
+          <a style={{ marginRight: 12 }}>
+            <img
+              src="/static/images/icons/profile.png"
+              alt=""
+              style={{ width: 30 }}
+            />
+          </a>
+        </Link>
+
+        <Basket />
+      </div>
 
       {/*<HeaderToggle*/}
       {/*  onClick={toggleMenu}*/}
