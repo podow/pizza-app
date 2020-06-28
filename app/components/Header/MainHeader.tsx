@@ -22,15 +22,15 @@ const MainHeader: React.FC<IMainHeaderProps> = props => {
 
       <Basket />
 
-      <HeaderToggle
-        onClick={toggleMenu}
-        isMenuOpened={isMenuOpened}
-        className="header-toggle"
-      >
-        <a>
-          <i />
-        </a>
-      </HeaderToggle>
+      {/*<HeaderToggle*/}
+      {/*  onClick={toggleMenu}*/}
+      {/*  isMenuOpened={isMenuOpened}*/}
+      {/*  className="header-toggle"*/}
+      {/*>*/}
+      {/*  <a>*/}
+      {/*    <i />*/}
+      {/*  </a>*/}
+      {/*</HeaderToggle>*/}
     </MainHeaderWrapper>
   );
 };

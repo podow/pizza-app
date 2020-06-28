@@ -7,11 +7,11 @@ export const WrapperStyle = styled.div`
 
 export const Main = styled.main<{ backMenuOpened: boolean; color?: string }>`
   ${props => props.color && `background-color: ${props.color};`}
-  padding-top: ${props => (props.backMenuOpened ? '190px' : '143px')};
+  padding-top: ${props => (props.backMenuOpened ? '190px' : '100px')};
   @media (max-width: 425px) {
-    padding-top: ${props => (props.backMenuOpened ? '120px' : '87px')};
+    padding-top: ${props => (props.backMenuOpened ? '120px' : '90px')};
   }
   @media (max-width: 320px) {
-    padding-top: ${props => (props.backMenuOpened ? '110px' : '72px')};
+    padding-top: ${props => (props.backMenuOpened ? '110px' : '70px')};
   }
 `;

@@ -47,7 +47,7 @@ const Wrapper: React.FC<IProps> = props => {
         <Main backMenuOpened={backMenuOpened} color={color}>
           {children}
         </Main>
-        <Footer />
+        {/*<Footer />*/}
       </WrapperStyle>
     </Fragment>
   );
