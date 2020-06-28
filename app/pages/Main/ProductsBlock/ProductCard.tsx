@@ -27,9 +27,9 @@ const ProductCard: React.FC<{ item: IProduct; onClick: () => void }> = ({
               'old-price': discountPrice
             })}
           >
-            {price}$
+            $ {price}
           </span>
-          {discountPrice && <span>{discountPrice}$</span>}
+          {discountPrice && <span>$ {discountPrice}</span>}
         </span>
       </div>
       <div>
