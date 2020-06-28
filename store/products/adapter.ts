@@ -4,14 +4,15 @@ export const productAdapter = (product: IProduct) => ({
   ...product,
   price: product.price,
   discountPrice: product.discountPrice
-    ? product.price - product.discountPrice
+    ? (product.price - product.discountPrice).toFixed(2)
     : null,
   image: product.image
     ? process.env.API_HOST + product.image
     : '/static/images/product-placeholder.svg',
   ingredients: product.ingredients.map(ingredient => ({
     ...ingredient,
-    image: process.env.API_HOST + ingredient.image
+    image: process.env.API_HOST + ingredient.image,
+    price: Number(ingredient.price).toFixed(2)
   })),
   count: 1
 });
