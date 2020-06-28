@@ -14,6 +14,7 @@ import { IProduct } from 'interfaces/components/products';
 import { removeFromBasketAction } from 'store/basket/actions';
 
 import BasketProductItem from './BasketProductItem';
+import DeliveryItem from './DeliveryItem';
 
 const Basket = () => {
   const dispatch = useDispatch();
@@ -51,8 +52,9 @@ const Basket = () => {
                   onRemove={() => removeClickHandler(item)}
                 />
               ))}
+              <DeliveryItem />
             </BasketProductList>
-            <div className="total">Total: {totalCost}$</div>
+            <div className="total">Total: {Number(totalCost) + 5}$</div>
           </>
         ) : (
           <EmptyBasketWrapper>

@@ -17,6 +17,8 @@ import { Container } from 'app/components/container';
 import { Button } from 'app/components/Buttons';
 import OrderModal from './OrderModal';
 import OrderResultModal from './OrderResultModal';
+import DeliveryItem from './DeliveryItem';
+import BasketItem from './BasketItem';
 
 const BasketPageContainer = () => {
   const dispatch = useDispatch();
@@ -40,7 +42,7 @@ const BasketPageContainer = () => {
         user_data: values,
         order_data: {
           products,
-          totalCost
+          totalCost: Number(totalCost) + 5
         }
       })
     );
@@ -57,41 +59,16 @@ const BasketPageContainer = () => {
 
         <BasketList>
           {products.length !== 0 ? (
-            products.map((product: IProduct) => (
-              <BasketProduct key={product.id}>
-                <div className="half">
-                  <div className="image">
-                    <img src={product.image} alt={product.name} />
-                  </div>
-                  <div className="description">
-                    <h4>{product.name}</h4>
-                    <span>1 PC / 6 pieces</span>
-                  </div>
-                  <div className="controls">
-                    <div className="count">
-                      <button>-</button>
-                      {product.count}
-                      <button>+</button>
-                    </div>
-                  </div>
-                </div>
-                <div className="half">
-                  <div className="money">
-                    <div className="price">
-                      ${' '}
-                      {(product.discountPrice || product.price) *
-                        (product.count || 1)}
-                    </div>
-                  </div>
-                  <div className="delete">
-                    <div
-                      className="remove"
-                      onClick={() => removeClickHandler(product)}
-                    />
-                  </div>
-                </div>
-              </BasketProduct>
-            ))
+            <>
+              {products.map((product: IProduct) => (
+                <BasketItem
+                  key={product.id}
+                  product={product}
+                  onRemove={() => removeClickHandler(product)}
+                />
+              ))}
+              <DeliveryItem />
+            </>
           ) : (
             <>
               <h2 style={{ marginTop: 34 }}>Empty!</h2>
@@ -106,7 +83,10 @@ const BasketPageContainer = () => {
             </a>
           </Link>
           <div className="total">
-            Total: <span className="money">$ {totalCost}</span>
+            Total:{' '}
+            <span className="money">
+              $ {totalCost !== 0 ? Number(totalCost) + 5 : totalCost}
+            </span>
           </div>
           <Button disabled={products.length <= 0} onClick={handleSubmitOrder}>
             Take order

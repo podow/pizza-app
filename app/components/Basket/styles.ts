@@ -67,7 +67,7 @@ export const BasketWrapper = styled.div`
 
     .total {
       padding: 16px 0 24px;
-      border-top: 1px solid #dedede;
+      border-top: 1px solid #c3c2c2;
     }
   }
 `;
@@ -80,7 +80,7 @@ export const BasketProductItemWrapper = styled.li`
   display: flex;
 
   &:not(:first-child) {
-    border-top: 1px solid;
+    border-top: 1px solid #dedede;
     padding-top: 6px;
   }
 
@@ -117,6 +117,30 @@ export const BasketProductItemWrapper = styled.li`
 
     .count {
       font-size: 14px;
+      display: flex;
+      align-items: center;
+
+      button {
+        border: 1px solid ${mainColor};
+        background: transparent;
+        color: ${mainColor};
+        cursor: pointer;
+        border-radius: 4px;
+        transition: all ${mainTransitionTime};
+
+        &:hover {
+          color: #fff;
+          background-color: ${mainColor};
+        }
+
+        &:first-child {
+          margin-right: 5px;
+        }
+
+        &:last-child {
+          margin-left: 5px;
+        }
+      }
     }
   }
 `;
