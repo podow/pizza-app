@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import {
@@ -16,6 +16,7 @@ import { toggleModal } from 'store/common/actions';
 const Modal: React.FC<IModalProps> = props => {
   const [isClient, setIsClient] = useState<boolean>(false);
   const dispatch = useDispatch();
+  const modalRef = useRef(null);
 
   const modal = useSelector(state => state.common.modal);
 
@@ -27,19 +28,30 @@ const Modal: React.FC<IModalProps> = props => {
     }
   }, []);
 
-  function closeModal(e) {
+  const closeModal = e => {
     e.preventDefault();
     const { name } = modal;
     dispatch(toggleModal({ name, open: false }));
     onClose && onClose();
-  }
+  };
+
+  const handleClickOutside = e => {
+    // @ts-ignore
+    if (!modalRef.current?.contains(e.target)) {
+      closeModal(e);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+  }, []);
 
   return (
     <>
       {isClient ? (
         <ModalWrapper isOpen={modal.name === nameProp && modal.open}>
           {modal.name === nameProp && modal.open && (
-            <ModalContent isOpen={modal.open}>
+            <ModalContent ref={modalRef} isOpen={modal.open}>
               <CloseModalButton onClick={closeModal} />
               <ModalBody>{children}</ModalBody>
             </ModalContent>
