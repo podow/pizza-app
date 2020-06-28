@@ -8,6 +8,7 @@ interface IProps {
   price: string | number;
   count?: number;
   onRemove: () => void;
+  onCountChange: (type) => void;
 }
 
 const BasketProductItem: React.FC<IProps> = ({
@@ -15,7 +16,8 @@ const BasketProductItem: React.FC<IProps> = ({
   name,
   price,
   count,
-  onRemove
+  onRemove,
+  onCountChange
 }) => (
   <BasketProductItemWrapper>
     <div className="image">
@@ -23,11 +25,15 @@ const BasketProductItem: React.FC<IProps> = ({
     </div>
     <div className="description">
       <h4>{name}</h4>
-      <span>{price}$</span>
+      <span>$ {price}</span>
     </div>
     <div className="controls">
       <div className="remove" onClick={onRemove} />
-      <div className="count">{count}</div>
+      <div className="count">
+        <button onClick={() => onCountChange('-')}>-</button>
+        {count}
+        <button onClick={() => onCountChange('+')}>+</button>
+      </div>
     </div>
   </BasketProductItemWrapper>
 );

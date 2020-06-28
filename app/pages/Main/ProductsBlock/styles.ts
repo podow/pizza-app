@@ -88,15 +88,12 @@ export const ProductModalContent = styled.div`
     .text {
       p {
         margin-top: 8px;
+        margin-bottom: 16px;
       }
     }
 
     .add-to-card {
       margin-top: 34px;
-
-      @media ${device.tablet} {
-        margin-top: unset;
-      }
     }
   }
 
@@ -128,6 +125,13 @@ export const ProductModalContent = styled.div`
 
       &__active {
         background-color: gainsboro;
+      }
+
+      img {
+        max-width: unset;
+        width: 135%;
+        margin-left: -10px;
+        margin-top: -20px;
       }
 
       &_name {

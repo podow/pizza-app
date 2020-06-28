@@ -11,9 +11,13 @@ import {
 
 import { IProduct } from 'interfaces/components/products';
 
-import { removeFromBasketAction } from 'store/basket/actions';
+import {
+  addToBasketAction,
+  removeFromBasketAction
+} from 'store/basket/actions';
 
 import BasketProductItem from './BasketProductItem';
+import DeliveryItem from './DeliveryItem';
 
 const Basket = () => {
   const dispatch = useDispatch();
@@ -24,7 +28,17 @@ const Basket = () => {
   }));
 
   const removeClickHandler = (item: IProduct) => {
-    dispatch(removeFromBasketAction(item));
+    dispatch(
+      removeFromBasketAction({ product: item, countToRemove: item.count })
+    );
+  };
+
+  const changeCountHandler = (product: IProduct, type: string) => {
+    if (type === '+') {
+      dispatch(addToBasketAction(product));
+    } else {
+      dispatch(removeFromBasketAction({ product, countToRemove: 1 }));
+    }
   };
 
   return (
@@ -32,7 +46,9 @@ const Basket = () => {
       <Link href={{ pathname: '/basket' }}>
         <BasketLink>
           <span>Basket</span>
-          {totalItems || (
+          {totalItems && totalItems > 0 ? (
+            totalItems
+          ) : (
             <img src="/static/images/icons/icon-basket.svg" alt="Basket" />
           )}
         </BasketLink>
@@ -49,10 +65,12 @@ const Basket = () => {
                   price={item.discountPrice || item.price}
                   count={item.count}
                   onRemove={() => removeClickHandler(item)}
+                  onCountChange={type => changeCountHandler(item, type)}
                 />
               ))}
+              <DeliveryItem />
             </BasketProductList>
-            <div className="total">Total: {totalCost}$</div>
+            <div className="total">Total: {Number(totalCost) + 5}$</div>
           </>
         ) : (
           <EmptyBasketWrapper>

@@ -54,7 +54,7 @@ class Header extends Component<IProps, IState> {
             />
           </Container>
         </div>
-        <SubHeader />
+        {/*<SubHeader />*/}
         <HeaderMobile isMenuOpened={this.state.isMenuOpened} />
       </HeaderWrapper>
     );
