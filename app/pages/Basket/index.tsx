@@ -95,7 +95,8 @@ const BasketPageContainer = () => {
           <div className="total">
             Total:{' '}
             <span className="money">
-              $ {totalCost > 0 ? Number(totalCost) + 5 : totalCost}
+              $ {totalCost > 0 ? Number(totalCost) + 5 : totalCost} / €{' '}
+              {Number(totalCost > 0 ? Number(totalCost) + 5 : totalCost) * 0.88}
             </span>
           </div>
           <Button disabled={products.length <= 0} onClick={handleSubmitOrder}>

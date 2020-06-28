@@ -55,7 +55,9 @@ const HistoryContainer = () => {
                   <tr key={id}>
                     <td>{id}</td>
                     <td>{order_dt}</td>
-                    <td>$ {totalCost}</td>
+                    <td>
+                      $ {totalCost} / € {totalCost * 0.88}
+                    </td>
                     <td>
                       <span>Delivered</span>
                     </td>

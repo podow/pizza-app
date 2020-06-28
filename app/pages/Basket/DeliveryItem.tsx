@@ -17,7 +17,7 @@ const DeliveryItem = () => (
     </div>
     <div className="half">
       <div className="money">
-        <div className="price">$ 5</div>
+        <div className="price">$ 5 / € {5 * 0.88}</div>
       </div>
     </div>
   </BasketProduct>

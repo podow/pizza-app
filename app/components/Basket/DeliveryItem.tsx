@@ -9,7 +9,7 @@ const DeliveryItem = () => (
     </div>
     <div className="description">
       <h4>Delivery</h4>
-      <span>$ 5</span>
+      <span>$ 5 / € {5 * 0.88}</span>
     </div>
     <div className="controls">
       <div className="remove" style={{ opacity: 0, cursor: 'default' }} />
