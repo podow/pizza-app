@@ -89,8 +89,8 @@ const ProductModal: React.FC<IProductModal> = ({ name, activeProduct }) => {
               onClick={() => addToCardClickHandler(activeProduct)}
               isFullWidth
             >
-              Add to card for{' '}
-              {activeProduct.discountPrice || activeProduct.price}$
+              Add to card for ${' '}
+              {activeProduct.discountPrice || activeProduct.price}
             </Button>
           </div>
         </ProductModalContent>
