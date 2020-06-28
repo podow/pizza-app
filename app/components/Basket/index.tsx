@@ -70,7 +70,10 @@ const Basket = () => {
               ))}
               <DeliveryItem />
             </BasketProductList>
-            <div className="total">Total: {Number(totalCost) + 5}$</div>
+            <div className="total">
+              Total: $ {Number(totalCost) + 5} / €{' '}
+              {Number(Number(totalCost) + 5) * 0.88}
+            </div>
           </>
         ) : (
           <EmptyBasketWrapper>

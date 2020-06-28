@@ -25,7 +25,9 @@ const BasketProductItem: React.FC<IProps> = ({
     </div>
     <div className="description">
       <h4>{name}</h4>
-      <span>$ {price}</span>
+      <span>
+        $ {price} / € {Number(price) * 0.88}
+      </span>
     </div>
     <div className="controls">
       <div className="remove" onClick={onRemove} />

@@ -27,9 +27,16 @@ const ProductCard: React.FC<{ item: IProduct; onClick: () => void }> = ({
               'old-price': discountPrice
             })}
           >
-            $ {price}
+            $ {price} / € {price * 0.88}
           </span>
-          {discountPrice && <span>$ {discountPrice}</span>}
+          {discountPrice && (
+            <>
+              <br />
+              <span>
+                $ {discountPrice} / € {discountPrice * 0.88}
+              </span>
+            </>
+          )}
         </span>
       </div>
       <div>
