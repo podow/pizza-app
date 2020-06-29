@@ -4,6 +4,7 @@ export const getAll = () =>
   globalAxios.default
     .get('/get-history', {
       headers: {
+        accept: 'application/json',
         'X-AUTH-TOKEN': localStorage.getItem('token')
       }
     })
