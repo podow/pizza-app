@@ -69,7 +69,7 @@ export const BasketProduct = styled.li`
   }
 
   .description {
-    width: calc(85% - 133px);
+    width: calc(80% - 133px);
     padding-right: 12px;
     align-self: center;
     flex: 0 0 auto;
@@ -127,12 +127,12 @@ export const BasketProduct = styled.li`
   }
 
   .money {
-    width: 15%;
+    width: 20%;
     padding-top: 16px;
     text-align: right;
-    font-size: 21px;
-    color: rgb(0, 0, 0);
-    flex: 0 0 auto;
+    font-size: 20px;
+    color: #000;
+    flex: 0 0 auto; y
   }
 
   .delete {
