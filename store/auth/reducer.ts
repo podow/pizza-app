@@ -25,7 +25,7 @@ export default handleActions(
       ...state,
       ...status,
       loading: true,
-      data: null
+      data: {}
     }),
     [AUTH + FETCH + DONE]: (state, { payload }) => ({
       ...state,
