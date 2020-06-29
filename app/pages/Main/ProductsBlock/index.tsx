@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { ProductsSection, ProductsSectionItemsWrapper } from './styles';
+import {
+  ProductsSection,
+  ProductsTypeSection,
+  ProductsSectionItemsWrapper
+} from './styles';
 
 import { toggleModal } from 'store/common/actions';
 
@@ -16,8 +20,7 @@ const ProductsBlock = () => {
   const [activeProduct, setActiveProduct] = useState({} as IProduct);
   const dispatch = useDispatch();
 
-  const clickHandler = id => {
-    const product: any = products.find(product => product.id === id);
+  const clickHandler = product => {
     setActiveProduct(product);
     dispatch(toggleModal({ name: 'productModal', open: true }));
   };
@@ -25,15 +28,20 @@ const ProductsBlock = () => {
   return (
     <ProductsSection>
       <Container>
-        <ProductsSectionItemsWrapper>
-          {products?.map(product => (
-            <ProductCard
-              key={product.id}
-              item={product}
-              onClick={() => clickHandler(product.id)}
-            />
-          ))}
-        </ProductsSectionItemsWrapper>
+        {Object.keys(products).map((type, index) => (
+          <ProductsTypeSection key={index}>
+            <h2>{type}</h2>
+            <ProductsSectionItemsWrapper>
+              {products?.[type]?.map(product => (
+                <ProductCard
+                  key={product.id}
+                  item={product}
+                  onClick={() => clickHandler(product)}
+                />
+              ))}
+            </ProductsSectionItemsWrapper>
+          </ProductsTypeSection>
+        ))}
       </Container>
 
       {Object.keys(activeProduct).length !== 0 && (

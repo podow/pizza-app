@@ -17,5 +17,51 @@ export const productAdapter = (product: IProduct) => ({
   count: 1
 });
 
-export const productsAdapter = (products: IProduct[]) =>
-  products.map(product => productAdapter(product));
+export const productsAdapter = (products: IProduct[]) => {
+  const pizzas = [];
+  const snacks = [];
+  const drinks = [];
+  const desserts = [];
+
+  products.map(product => {
+    switch (Number(product.type)) {
+      case 1:
+        // @ts-ignore
+        pizzas.push(productAdapter(product));
+        break;
+      case 2:
+        // @ts-ignore
+        snacks.push(productAdapter(product));
+        break;
+      case 3:
+        // @ts-ignore
+        drinks.push(productAdapter(product));
+        break;
+      case 4:
+        // @ts-ignore
+        desserts.push(productAdapter(product));
+        break;
+      default:
+        // @ts-ignore
+        pizzas.push(productAdapter(product));
+        break;
+    }
+  });
+
+  return { pizzas, snacks, drinks, desserts };
+};
+
+export const getType = type => {
+  switch (Number(type)) {
+    case 1:
+      return 'Pizza';
+    case 2:
+      return 'Snack';
+    case 3:
+      return 'Drink';
+    case 4:
+      return 'Dessert';
+    default:
+      return 'Pizza';
+  }
+};

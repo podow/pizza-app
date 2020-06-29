@@ -7,6 +7,7 @@ export interface IProduct {
   image: string;
   count?: number;
   ingredients: IIngredient[];
+  type: string | number;
 }
 
 export interface IIngredient {
