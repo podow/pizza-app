@@ -1,13 +1,29 @@
+import Router from 'next/router';
 import { takeLatest, call, put } from 'redux-saga/effects';
 
 import { fetchAuth, fetchAuthDone, fetchAuthFail } from './actions';
 
-import { auth } from './api';
+import { auth, signUp } from './api';
 
-function* fetchAuthFlow({ payload }) {
+function* fetchAuthFlow({ payload: { data, type } }) {
   try {
-    const response = yield call(auth, payload);
-    if (response) yield put(fetchAuthDone(response));
+    const response = yield call(type === 'login' ? auth : signUp, data);
+    localStorage.setItem(
+      'user',
+      JSON.stringify({
+        phone: response.phone,
+        access_token: response.access_token,
+        auth_key: response.auth_key
+      })
+    );
+    if (response) {
+      if (response.code && response.code != 200) {
+        yield put(fetchAuthFail(response.msg));
+      } else {
+        yield put(fetchAuthDone(response));
+        Router.push('/history');
+      }
+    }
   } catch (err) {
     console.error(err);
     yield put(fetchAuthFail());
