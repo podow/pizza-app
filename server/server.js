@@ -62,6 +62,15 @@ app.prepare().then(() => {
       .catch(reason => res.send(reason));
   });
 
+  server.get('/get-history', (req, res) => {
+    axios
+      .get('https://innoscripta-pizza-back-podow.herokuapp.com/history', {
+        headers: req.headers
+      })
+      .then(data => res.send({ data: data.data }))
+      .catch(reason => res.send(reason));
+  });
+
   server.get('*', (req, res) => handle(req, res));
 
   server.listen(port, error => {
