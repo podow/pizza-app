@@ -6,6 +6,7 @@ import products from './products/reducer';
 import basket from './basket/reducer';
 import order from './order/reducer';
 import auth from './auth/reducer';
+import history from './history/reducer';
 
 export default combineReducers({
   common,
@@ -13,5 +14,6 @@ export default combineReducers({
   products,
   basket,
   order,
-  auth
+  auth,
+  history
 });

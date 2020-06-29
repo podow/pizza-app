@@ -22,3 +22,6 @@ export const BASKET = 'products/BASKET';
 export const ORDER = 'order/ORDER';
 
 export const AUTH = 'auth/AUTH';
+export const LOGOUT = 'auth/LOGOUT';
+
+export const HISTORY = 'history/HISTORY';
