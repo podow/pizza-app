@@ -1,11 +1,3 @@
-import * as globalAxios from 'axios';
+import axios from 'helpers/axios.config';
 
-export const getAll = () =>
-  globalAxios.default
-    .get('/get-history', {
-      headers: {
-        accept: 'application/json',
-        'X-AUTH-TOKEN': localStorage.getItem('token')
-      }
-    })
-    .then(({ data }) => data.data);
+export const getAll = () => axios.get('/history').then(({ data }) => data.data);
