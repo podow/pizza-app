@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Field, Formik } from 'formik';
 import * as Yup from 'yup';
 
@@ -14,6 +14,11 @@ import { Button } from '../Buttons';
 import { FormField, InputPhone } from '../Form';
 
 const AuthModal = () => {
+  const { errorMessage, isAuthenticated, failed } = useSelector(state => ({
+    errorMessage: state.auth.errorMessage,
+    isAuthenticated: state.auth.isAuthenticated,
+    failed: state.auth.failed
+  }));
   const dispatch = useDispatch();
 
   const getInitialValues = isLogin =>
@@ -55,7 +60,9 @@ const AuthModal = () => {
       phone: values.phone.replace(/-/g, '')
     };
     dispatch(fetchAuth({ data: newValues, type }));
-    dispatch(toggleModal({ name: 'authModal', open: false }));
+    if (isAuthenticated) {
+      dispatch(toggleModal({ name: 'authModal', open: false }));
+    }
   };
 
   return (
@@ -70,6 +77,12 @@ const AuthModal = () => {
                 validationSchema={getValidationSchema(true)}
                 render={props => (
                   <form onSubmit={props.handleSubmit}>
+                    {failed && (
+                      <div className="error-message">
+                        {errorMessage ||
+                          'Troubles with authentication. Please contact the administrator'}
+                      </div>
+                    )}
                     <Field
                       component={InputPhone}
                       placeholder="Phone"
@@ -100,6 +113,9 @@ const AuthModal = () => {
                 validationSchema={getValidationSchema(false)}
                 render={props => (
                   <form onSubmit={props.handleSubmit}>
+                    {errorMessage && (
+                      <div className="error-message">{errorMessage}</div>
+                    )}
                     <Field
                       component={InputPhone}
                       placeholder="Phone"

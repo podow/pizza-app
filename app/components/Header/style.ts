@@ -435,7 +435,18 @@ export const HeaderControls = styled.div`
 `;
 
 export const AuthModalWrapper = styled.div`
-  min-width: 380px;
+  position: relative;
+
+  @media ${device.tablet} {
+    min-width: 380px;
+  }
+
+  .error-message {
+    color: red;
+    position: absolute;
+    width: 100%;
+    top: 15%;
+  }
 
   form {
     & > *:not(:last-child) {

@@ -74,6 +74,7 @@ export const CloseModalButton = styled.a`
   right: 20px;
   bottom: auto;
   left: auto;
+  z-index: 9999;
   @media (min-width: 992px) {
     display: block;
     width: 20px;

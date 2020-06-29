@@ -5,8 +5,9 @@ import { AUTH, FETCH, DONE, FAIL } from '../constants';
 
 const initialState = {
   ...status,
-  data: null,
-  isAuthenticated: false
+  data: {},
+  isAuthenticated: false,
+  errorMessage: null
 };
 
 export default handleActions(
@@ -31,14 +32,16 @@ export default handleActions(
       ...status,
       data: payload,
       success: true,
-      isAuthenticated: true
+      isAuthenticated: true,
+      errorMessage: null
     }),
-    [AUTH + FETCH + FAIL]: state => ({
+    [AUTH + FETCH + FAIL]: (state, { payload }) => ({
       ...state,
       ...status,
       failed: true,
       data: null,
-      isAuthenticated: false
+      isAuthenticated: false,
+      errorMessage: payload
     })
   },
   initialState

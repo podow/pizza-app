@@ -17,8 +17,12 @@ function* fetchAuthFlow({ payload: { data, type } }) {
       })
     );
     if (response) {
-      yield put(fetchAuthDone(response));
-      Router.push('/history');
+      if (response.code && response.code != 200) {
+        yield put(fetchAuthFail(response.msg));
+      } else {
+        yield put(fetchAuthDone(response));
+        Router.push('/history');
+      }
     }
   } catch (err) {
     console.error(err);
