@@ -12,24 +12,6 @@ import { Container } from 'app/components/container';
 const HistoryContainer = () => {
   const history = useSelector(state => state.history.data);
 
-  const renderProduct = product => (
-    <Fragment key={product.id}>
-      {product.ingredients.length === 0 ? (
-        <>
-          <b>{product.name}</b> <br />
-        </>
-      ) : (
-        <>
-          <b>{product.name}</b> with{' '}
-          {product.ingredients.map(ingredient => (
-            <i key={ingredient.id}> {ingredient.name}</i>
-          ))}
-          <br />
-        </>
-      )}
-    </Fragment>
-  );
-
   return (
     <HistoryPageWrapper>
       <Container>
@@ -54,7 +36,13 @@ const HistoryContainer = () => {
                     <td>
                       $ {totalCost} / € {totalCost * 0.88}
                     </td>
-                    <td>{products.map(product => renderProduct(product))}</td>
+                    <td>
+                      {products.map(product => (
+                        <Fragment key={product.id}>
+                          <b>{product.name}</b> x {product.count} <br />
+                        </Fragment>
+                      ))}
+                    </td>
                     <td>
                       <span>Delivered</span>
                     </td>
