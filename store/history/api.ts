@@ -1,3 +1,4 @@
 import axios from 'helpers/axios.config';
 
-export const getAll = () => axios.get('/history').then(({ data }) => data.data);
+export const getAll = userId =>
+  axios.get(`/history/${userId}`).then(({ data }) => data.data);

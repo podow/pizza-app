@@ -4,9 +4,9 @@ import { fetchHistory, fetchHistoryDone, fetchHistoryFail } from './actions';
 
 import { getAll } from './api';
 
-function* fetchHistoryFlow() {
+function* fetchHistoryFlow({ payload }) {
   try {
-    const response = yield call(getAll);
+    const response = yield call(getAll, payload);
     if (response) yield put(fetchHistoryDone(response));
   } catch (err) {
     console.error(err);

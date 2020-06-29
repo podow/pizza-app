@@ -24,10 +24,6 @@ export const HistoryTable = styled.table`
 
   th {
     text-align: left;
-
-    &:last-child {
-      text-align: right;
-    }
   }
 
   td {
@@ -39,10 +35,6 @@ export const HistoryTable = styled.table`
       background-color: #64be2f;
       border-radius: 4px;
       padding: 4px;
-    }
-
-    &:last-child {
-      text-align: right;
     }
     
     button {

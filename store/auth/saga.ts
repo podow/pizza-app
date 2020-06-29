@@ -1,5 +1,6 @@
 import Router from 'next/router';
 import { takeLatest, call, put } from 'redux-saga/effects';
+import * as Cookies from 'js-cookie';
 
 import { fetchAuth, fetchAuthDone, fetchAuthFail } from './actions';
 
@@ -12,6 +13,15 @@ function* fetchAuthFlow({ payload: { data, type } }) {
     if (response && response.msg) {
       yield put(fetchAuthFail(response.msg));
     } else {
+      Cookies.set(
+        'user_id',
+        type === 'register' ? response.data.id : response.id
+      );
+      Cookies.set(
+        'token',
+        type === 'register' ? response.data.access_token : response.access_token
+      );
+
       localStorage.setItem(
         'user',
         JSON.stringify({
@@ -23,10 +33,6 @@ function* fetchAuthFlow({ payload: { data, type } }) {
           auth_key:
             type === 'register' ? response.data.auth_key : response.auth_key
         })
-      );
-      localStorage.setItem(
-        'token',
-        type === 'register' ? response.data.access_token : response.access_token
       );
       yield put(fetchAuthDone(response));
       Router.push('/history');
