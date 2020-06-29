@@ -11,6 +11,15 @@ const initialState = {
 
 export default handleActions(
   {
+    [AUTH]: state => {
+      const data = JSON.parse(localStorage.getItem('user') || '{}');
+      return {
+        ...state,
+        ...status,
+        data,
+        isAuthenticated: Object.keys(data).length !== 0
+      };
+    },
     [AUTH + FETCH]: state => ({
       ...state,
       ...status,

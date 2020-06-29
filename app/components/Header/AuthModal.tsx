@@ -1,12 +1,11 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import Router from 'next/router';
+import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Field, Formik } from 'formik';
 import * as Yup from 'yup';
 
 import { AuthModalWrapper } from './style';
 
-import { fetchAuthDone } from 'store/auth/actions';
+import { fetchAuth } from 'store/auth/actions';
 import { toggleModal } from 'store/common/actions';
 
 import Modal, { ModalPortal } from '../Modal';
@@ -15,15 +14,7 @@ import { Button } from '../Buttons';
 import { FormField, InputPhone } from '../Form';
 
 const AuthModal = () => {
-  const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
   const dispatch = useDispatch();
-
-  // FIXME: Replace to saga
-  useEffect(() => {
-    if (isAuthenticated) {
-      Router.push('/history');
-    }
-  }, [isAuthenticated]);
 
   const getInitialValues = isLogin =>
     isLogin
@@ -58,13 +49,13 @@ const AuthModal = () => {
             .required()
         });
 
-  // FIXME: connect to api
-  const handleSubmit = values => {
-    console.log(values);
-    if (values.password === '123123123') {
-      dispatch(fetchAuthDone({ username: 'firelog', phone: '777777777777' }));
-      dispatch(toggleModal({ name: 'authModal', open: false }));
-    }
+  const handleSubmit = (values, type) => {
+    const newValues = {
+      ...values,
+      phone: values.phone.replace(/-/g, '')
+    };
+    dispatch(fetchAuth({ data: newValues, type }));
+    dispatch(toggleModal({ name: 'authModal', open: false }));
   };
 
   return (
@@ -74,7 +65,7 @@ const AuthModal = () => {
           <Tabs tabControlsTag="h3">
             <Tab label="Login">
               <Formik
-                onSubmit={handleSubmit}
+                onSubmit={values => handleSubmit(values, 'login')}
                 initialValues={getInitialValues(true)}
                 validationSchema={getValidationSchema(true)}
                 render={props => (
@@ -104,7 +95,7 @@ const AuthModal = () => {
 
             <Tab label="Register">
               <Formik
-                onSubmit={handleSubmit}
+                onSubmit={values => handleSubmit(values, 'register')}
                 initialValues={getInitialValues(false)}
                 validationSchema={getValidationSchema(false)}
                 render={props => (

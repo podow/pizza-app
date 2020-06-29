@@ -1,6 +1,7 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Link from 'next/link';
+import Router from 'next/router';
 
 import { HeaderToggle, MainHeaderWrapper, HeaderControls } from './style';
 
@@ -12,10 +13,15 @@ import AuthModal from './AuthModal';
 
 const MainHeader: React.FC<IMainHeaderProps> = props => {
   const { toggleMenu, isMenuOpened } = props;
+  const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
   const dispatch = useDispatch();
 
   const cabinetClickHandler = () => {
-    dispatch(toggleModal({ name: 'authModal', open: true }));
+    if (isAuthenticated) {
+      Router.push('/history');
+    } else {
+      dispatch(toggleModal({ name: 'authModal', open: true }));
+    }
   };
 
   return (

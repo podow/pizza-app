@@ -6,6 +6,7 @@ import Head from 'next/head';
 import { WrapperStyle, Main } from './style';
 
 import { fetchBasketAction } from 'store/basket/actions';
+import { checkAuth } from 'store/auth/actions';
 
 import Header from 'app/components/Header';
 import Footer from 'app/components/Footer';
@@ -32,6 +33,7 @@ const Wrapper: React.FC<IProps> = props => {
     if (localStorage.getItem('backMenu') === 'false' && backMenuOpened)
       setBackMenuOpened(false);
     dispatch(fetchBasketAction());
+    dispatch(checkAuth());
   }, [backMenuOpened]);
   return (
     <Fragment>
