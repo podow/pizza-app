@@ -1,7 +1,7 @@
 import { handleActions } from 'redux-actions';
 import status from '../status';
 
-import { AUTH, FETCH, DONE, FAIL } from '../constants';
+import { AUTH, FETCH, DONE, FAIL, LOGOUT } from '../constants';
 
 const initialState = {
   ...status,
@@ -42,7 +42,15 @@ export default handleActions(
       data: null,
       isAuthenticated: false,
       errorMessage: payload
-    })
+    }),
+    [LOGOUT]: () => {
+      localStorage.removeItem('user');
+      localStorage.removeItem('token');
+
+      return {
+        ...initialState
+      };
+    }
   },
   initialState
 );

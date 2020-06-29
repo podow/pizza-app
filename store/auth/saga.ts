@@ -24,6 +24,10 @@ function* fetchAuthFlow({ payload: { data, type } }) {
             type === 'register' ? response.data.auth_key : response.auth_key
         })
       );
+      localStorage.setItem(
+        'token',
+        type === 'register' ? response.data.access_token : response.access_token
+      );
       yield put(fetchAuthDone(response));
       Router.push('/history');
     }
