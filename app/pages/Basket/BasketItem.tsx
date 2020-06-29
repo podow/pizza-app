@@ -2,6 +2,8 @@ import React from 'react';
 
 import { BasketProduct } from './styles';
 
+import { getType } from 'store/products/adapter';
+
 import { IProduct } from 'interfaces/components/products';
 
 interface IProps {
@@ -11,7 +13,7 @@ interface IProps {
 }
 
 const BasketItem: React.FC<IProps> = ({
-  product: { image, name, count, discountPrice, price },
+  product: { image, name, count, discountPrice, price, type },
   onRemove,
   onCountChange
 }) => (
@@ -22,7 +24,7 @@ const BasketItem: React.FC<IProps> = ({
       </div>
       <div className="description">
         <h4>{name}</h4>
-        <span>1 PC / 6 pieces</span>
+        <span>{getType(type)}</span>
       </div>
       <div className="controls">
         <div className="count">

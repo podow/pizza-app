@@ -5,6 +5,14 @@ export const ProductsSection = styled.section`
   padding: 50px 0;
 `;
 
+export const ProductsTypeSection = styled.section`
+  h2 {
+    margin: 32px 0px;
+    text-transform: uppercase;
+    font-size: 2em;
+  }
+`;
+
 export const ProductsSectionItemsWrapper = styled.div`
   display: grid;
   grid-gap: 30px;
