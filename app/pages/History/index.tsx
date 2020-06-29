@@ -13,7 +13,10 @@ import { toggleModal } from 'store/common/actions';
 import { Container } from 'app/components/container';
 
 const HistoryContainer = () => {
-  const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
+  const { isAuthenticated, history: historyNew } = useSelector(state => ({
+    isAuthenticated: state.auth.isAuthenticated,
+    history: state.history.data
+  }));
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -22,6 +25,8 @@ const HistoryContainer = () => {
       dispatch(toggleModal({ name: 'authModal', open: true }));
     }
   }, [isAuthenticated]);
+
+  console.log(historyNew);
 
   const history = [
     {
