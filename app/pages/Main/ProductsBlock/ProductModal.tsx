@@ -90,7 +90,9 @@ const ProductModal: React.FC<IProductModal> = ({ name, activeProduct }) => {
               isFullWidth
             >
               Add to card for ${' '}
-              {activeProduct.discountPrice || activeProduct.price}
+              {activeProduct.discountPrice || activeProduct.price} / €{' '}
+              {Number(activeProduct.discountPrice || activeProduct.price) *
+                0.88}
             </Button>
           </div>
         </ProductModalContent>
