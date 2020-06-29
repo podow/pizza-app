@@ -1,4 +1,4 @@
-import axios from 'helpers/axios.config';
+import * as globalAxios from 'axios';
 
 export const auth = data =>
-  axios.post('/auth', data).then(({ data }) => data.data);
+  globalAxios.default.post('/auth', data).then(({ data }) => data.data);
