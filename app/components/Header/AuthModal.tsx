@@ -14,11 +14,14 @@ import { Button } from '../Buttons';
 import { FormField, InputPhone } from '../Form';
 
 const AuthModal = () => {
-  const { errorMessage, isAuthenticated, failed } = useSelector(state => ({
-    errorMessage: state.auth.errorMessage,
-    isAuthenticated: state.auth.isAuthenticated,
-    failed: state.auth.failed
-  }));
+  const { errorMessage, isAuthenticated, failed, loading } = useSelector(
+    state => ({
+      errorMessage: state.auth.errorMessage,
+      isAuthenticated: state.auth.isAuthenticated,
+      failed: state.auth.failed,
+      loading: state.auth.loading
+    })
+  );
   const dispatch = useDispatch();
 
   const getInitialValues = isLogin =>
@@ -97,7 +100,7 @@ const AuthModal = () => {
                       isFullWidth
                     />
                     <footer>
-                      <Button size="sm" type="submit">
+                      <Button size="sm" type="submit" loading={loading}>
                         Log in
                       </Button>
                     </footer>
@@ -137,7 +140,7 @@ const AuthModal = () => {
                       isFullWidth
                     />
                     <footer>
-                      <Button size="sm" type="submit">
+                      <Button size="sm" type="submit" loading={loading}>
                         Register
                       </Button>
                     </footer>
