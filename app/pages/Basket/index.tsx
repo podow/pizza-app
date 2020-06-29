@@ -40,7 +40,10 @@ const BasketPageContainer = () => {
   const handleSubmitOrderModal = values => {
     dispatch(
       createOrder({
-        user_data: values,
+        user_data: {
+          ...values,
+          phone: values.phone.replace(/-/g, '')
+        },
         order_data: {
           products,
           totalCost: Number(totalCost) + 5
