@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import * as Yup from 'yup';
 
 import { ModalForm } from './styles';
@@ -9,10 +10,11 @@ import { FormField, InputPhone, TextArea } from 'app/components/Form';
 import { Button } from 'app/components/Buttons';
 
 const OrderModal = ({ name, onSubmit }) => {
+  const user = useSelector(state => state.auth.data);
   const initialValues = {
     name: '',
     address: '',
-    phone: '',
+    phone: user.phone || '',
     comment: ''
   };
 
