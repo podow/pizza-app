@@ -4,10 +4,13 @@ import { lightHover, mainColor, mainTransitionTime } from 'app/variables';
 
 export const HistoryPageWrapper = styled.div`
   padding: 32px 0;
+`;
 
-  h2 {
-    margin-bottom: 20px;
-  }
+export const HistoryTitleWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
 `;
 
 export const HistoryTableWrapper = styled.div`

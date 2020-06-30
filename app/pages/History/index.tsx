@@ -1,21 +1,36 @@
 import React, { Fragment } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import Router from 'next/router';
 
 import {
   HistoryPageWrapper,
+  HistoryTitleWrapper,
   HistoryTableWrapper,
   HistoryTable
 } from './styles';
+import { logoutAction } from 'store/auth/actions';
 
 import { Container } from 'app/components/container';
+import { Button } from 'app/components/Buttons';
 
 const HistoryContainer = () => {
   const history = useSelector(state => state.history.data);
+  const dispatch = useDispatch();
+
+  const logoutClickHandler = () => {
+    dispatch(logoutAction());
+    Router.push('/');
+  };
 
   return (
     <HistoryPageWrapper>
       <Container>
-        <h2>History</h2>
+        <HistoryTitleWrapper>
+          <h2>History</h2>
+          <Button size="sm" onClick={logoutClickHandler}>
+            Log out
+          </Button>
+        </HistoryTitleWrapper>
         <HistoryTableWrapper>
           <HistoryTable>
             <thead>
