@@ -28,20 +28,23 @@ const ProductsBlock = () => {
   return (
     <ProductsSection>
       <Container>
-        {Object.keys(products).map((type, index) => (
-          <ProductsTypeSection key={index}>
-            <h2>{type}</h2>
-            <ProductsSectionItemsWrapper>
-              {products?.[type]?.map(product => (
-                <ProductCard
-                  key={product.id}
-                  item={product}
-                  onClick={() => clickHandler(product)}
-                />
-              ))}
-            </ProductsSectionItemsWrapper>
-          </ProductsTypeSection>
-        ))}
+        {Object.keys(products).map(
+          (type, index) =>
+            products?.[type].length !== 0 && (
+              <ProductsTypeSection key={index}>
+                <h2>{type}</h2>
+                <ProductsSectionItemsWrapper>
+                  {products?.[type]?.map(product => (
+                    <ProductCard
+                      key={product.id}
+                      item={product}
+                      onClick={() => clickHandler(product)}
+                    />
+                  ))}
+                </ProductsSectionItemsWrapper>
+              </ProductsTypeSection>
+            )
+        )}
       </Container>
 
       {Object.keys(activeProduct).length !== 0 && (
